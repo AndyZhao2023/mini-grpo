@@ -44,7 +44,15 @@ The rollout command leaves reward and advantage null. It does not update model w
 uv run python -m scripts.score_rollout --config configs/m0.yaml --input results/m0/rollout-sample.jsonl --output results/m0/rewarded-sample.jsonl
 ```
 
-The verifier compares only the last nonblank `#### <number>` line with the pinned reference answer. It accepts signed integers, decimal numbers, and properly grouped thousands separators, comparing numeric values exactly. Missing or malformed final lines receive reward 0 with a reason code; an invalid reference answer stops scoring. The original rollout file is preserved, and [`results/m0/rewarded-sample.jsonl`](results/m0/rewarded-sample.jsonl) records the four scored trajectories. This sample has **four `missing_final_answer` results and four zero rewards**: two responses calculate 72 in prose without the required final line, one is incorrect/incomplete, and one reaches the 128-token limit. This is a single-group diagnostic, not an accuracy estimate. Advantage remains null; group normalization is the next step.
+The verifier compares only the last nonblank `#### <number>` line with the pinned reference answer. It accepts signed integers, decimal numbers, and properly grouped thousands separators, comparing numeric values exactly. Missing or malformed final lines receive reward 0 with a reason code; an invalid reference answer stops scoring. The original rollout file is preserved, and [`results/m0/rewarded-sample.jsonl`](results/m0/rewarded-sample.jsonl) records the four scored trajectories. This sample has **four `missing_final_answer` results and four zero rewards**: two responses calculate 72 in prose without the required final line, one is incorrect/incomplete, and one reaches the 128-token limit. This is a single-group diagnostic, not an accuracy estimate.
+
+## Normalize rewards within the group
+
+```bash
+uv run python -m scripts.normalize_advantages --config configs/m0.yaml --input results/m0/rewarded-sample.jsonl --output results/m0/advantaged-sample.jsonl
+```
+
+For rewards `r_1...r_G`, this uses the population standard deviation and sets `A_i = (r_i - mean(r)) / (std(r) + 1e-8)`. An all-equal group receives exact zero advantages. The command writes a separate [`results/m0/advantaged-sample.jsonl`](results/m0/advantaged-sample.jsonl) and validates that all required trajectory fields are present. The current real group has mean 0, standard deviation 0, and four advantages of 0. It is structurally ready for the loss calculation but contains no learning signal. The next step is the masked, clipped GRPO loss; useful training also needs groups with reward variation.
 
 ## M0 acceptance contract
 
