@@ -4,7 +4,7 @@ This repository builds a small, inspectable GRPO training loop for **single-turn
 
 ## Current state
 
-Day 1 establishes the pinned experiment contract, a validated JSONL trajectory format, a data-flow map, and a two-prompt resource smoke test. The smoke backward pass uses generated-token negative log likelihood **only to check the model gradient path**; it is not a GRPO update or a training result.
+The repository now has a pinned data and trajectory contract, a strict outcome verifier, group-relative advantages, a masked clipped GRPO loss, and one real mixed-reward optimizer smoke step. The original Day 1 backward pass used generated-token negative log likelihood **only to check the model gradient path**; the later smoke step below is the first actual GRPO update. Repeated training and held-out evaluation remain outstanding.
 
 The chosen baseline is [Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct) on Apple Silicon MPS in float32. The model, tokenizer, and [GSM8K](https://huggingface.co/datasets/openai/gsm8k) revisions are pinned in [`configs/m0.yaml`](configs/m0.yaml). Local hardware checked on 2026-09-25: Apple M5 Pro, 64 GB unified memory. Full-parameter training is the initial resource assumption; the Day 1 smoke checks only generation and backward feasibility at a short sequence length.
 
@@ -62,7 +62,26 @@ uv run python -m scripts.check_grpo_loss --config configs/m0.yaml --input result
 
 The check loads the pinned model in evaluation mode, recomputes raw current-policy log probabilities for the saved response tokens, and calculates `ratio = exp(new_log_prob - old_log_prob)`. The loss takes the smaller of `ratio * advantage` and its clipped counterpart on valid response tokens, averages tokens **within each response**, then averages responses within the group. Prompt and right-padding tokens are excluded; generated EOS is included. M0 uses `clip_epsilon=0.2` and `beta=0`. The code is differentiable, while this check uses no gradients or optimizer step.
 
-[`results/m0/loss-smoke.json`](results/m0/loss-smoke.json) records 193 valid response tokens, mean pre-update ratio 1.0, maximum ratio deviation 0, clip fraction 0, approximate KL 0, and policy loss 0. The zero loss follows from this group's four zero advantages. Unit tests use nonzero advantages to verify both clipping directions and gradients. The next step is an actual optimizer smoke test with groups that contain reward variation.
+[`results/m0/loss-smoke.json`](results/m0/loss-smoke.json) records 193 valid response tokens, mean pre-update ratio 1.0, maximum ratio deviation 0, clip fraction 0, approximate KL 0, and policy loss 0. The zero loss follows from this group's four zero advantages. Unit tests use nonzero advantages to verify both clipping directions and gradients.
+
+## Mixed-reward gate before an optimizer step
+
+```bash
+uv run python -m scripts.find_trainable_group --config configs/m0.yaml --output-dir results/m0 --max-prompts 64 --order original
+```
+
+The scanner uses only the pinned training partition, fixed seed, and original row order. It stops at the first group containing both reward 0 and reward 1, then saves separate rollout, scored, and advantaged JSONL files. A run with no such group writes its scan summary and exits nonzero. The current [original-order scan](results/m0/train-smoke-scan.json) found **zero correct responses among 256 samples** from 64 prompts: 207 missing final answers, 47 invalid final answers, two valid but incorrect answers, and 133 length truncations. Its `zero_std_group_fraction` is 1.0.
+
+To separate question difficulty from formatting, a [64-question shortest-first scan](results/m0/shortest-v1/train-smoke-scan.json) used only question word count and prompt ID for ordering; it also found zero correct responses. Two versioned prompt pilots kept the same model, dataset, and strict verifier: [format-v2](configs/m0-format-v2.yaml) allowed 256 tokens and yielded [0/64 correct](results/m0/format-v2/train-smoke-scan.json); [direct-answer](configs/m0-direct-answer.yaml) requested only the numeric final line and also yielded [0/64 correct](results/m0/direct-answer/train-smoke-scan.json). These overlapping, adaptively chosen training samples are diagnostics, not a held-out accuracy estimate.
+
+A [format-example prompt](configs/m0-format-example.yaml) added one independent `2 + 3 = 5` example to format-v2 while keeping its pinned 0.5B model, GSM8K partition, G=4 sampling at temperature 1 with a 256-token limit, and strict verifier. Its [shortest-first scan](results/m0/format-example/train-smoke-scan.json) selected training prompt `gsm8k/main/train/01214` after seven groups: rewards `[0, 0, 1, 0]`, six zero-variance groups, and one strictly correct answer among 28 sampled responses. This is a selected training diagnostic, not an accuracy estimate. The selected [trajectories](results/m0/format-example/train-smoke-advantaged.jsonl) have advantages approximately `[-0.577, -0.577, 1.732, -0.577]`.
+
+```bash
+uv run python -m scripts.find_trainable_group --config configs/m0-format-example.yaml --output-dir results/m0/format-example --max-prompts 8 --order shortest
+uv run python -m scripts.train_grpo_smoke --config configs/m0-format-example.yaml --input results/m0/format-example/train-smoke-advantaged.jsonl --scan results/m0/format-example/train-smoke-scan.json --output results/m0/format-example/train-smoke.json --checkpoint-dir results/m0/format-example/checkpoints/step-000001
+```
+
+`scripts/train_grpo_smoke.py` guards one full-parameter AdamW update at `1e-6`: it checks the pinned training row, prompt tokens, rewards, advantages, scan/config hash, and pre-update ratio before backpropagating. The [real MPS step](results/m0/format-example/train-smoke.json) used 141 valid response tokens, had a pre-update maximum ratio deviation of `3.33e-5`, nonzero pre-clip gradient norm `30.90`, and saved a local model checkpoint under Git-ignored `results/m0/format-example/checkpoints/step-000001/`. Post-update `approx_kl_old` was `0.1914` and clip fraction `0.2199`; this drift is substantial for one step, so the `1e-6` learning rate is a smoke setting, not a validated setting for repeated updates. The checkpoint contains model and tokenizer weights but no optimizer state. CPU tests with a tiny model verify parameter changes and aborts for stale old probabilities, zero reward variance, or zero gradient. Held-out evaluation and repeated rollout/update cycles have not run.
 
 ## M0 acceptance contract
 

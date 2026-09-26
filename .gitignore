@@ -3,3 +3,5 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+results/m0/checkpoints/
+results/m0/**/checkpoints/

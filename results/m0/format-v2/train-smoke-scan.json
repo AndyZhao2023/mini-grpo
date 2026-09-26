@@ -1,0 +1,337 @@
+{
+  "dataset_revision": "740312add88f781978c0658806c59bc2815b9866",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "tokenizer_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "seed": 42,
+  "selection": "first mixed-reward group in original training order",
+  "max_prompts": 16,
+  "scanned_prompts": 16,
+  "zero_std_group_fraction": 1.0,
+  "reason_counts": {
+    "missing_final_answer": 64
+  },
+  "selected_prompt_id": null,
+  "attempts": [
+    {
+      "prompt_id": "gsm8k/main/train/00000",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        46,
+        161,
+        103,
+        91
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00002",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        83,
+        19,
+        24,
+        67
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00003",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        102,
+        82,
+        8,
+        46
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00004",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        75,
+        256,
+        61,
+        117
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00005",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        256,
+        255,
+        10,
+        47
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00006",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        109,
+        31,
+        92,
+        52
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00007",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        90,
+        256,
+        62,
+        14
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00008",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        21,
+        52,
+        256,
+        99
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00009",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        256,
+        175,
+        24,
+        165
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00010",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        4,
+        158,
+        4,
+        4
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00011",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        256,
+        256,
+        234,
+        256
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00012",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        44,
+        18,
+        52,
+        101
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00013",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        72,
+        61,
+        256,
+        94
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00014",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        256,
+        41,
+        251,
+        158
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00015",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        115,
+        256,
+        53,
+        256
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00016",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        256,
+        28,
+        32,
+        256
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    }
+  ]
+}

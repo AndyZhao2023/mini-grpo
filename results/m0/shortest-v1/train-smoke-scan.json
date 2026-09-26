@@ -1,0 +1,1336 @@
+{
+  "dataset_revision": "740312add88f781978c0658806c59bc2815b9866",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "tokenizer_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "seed": 42,
+  "selection": "first mixed-reward group in shortest training order",
+  "order": "shortest",
+  "max_prompts": 64,
+  "scanned_prompts": 64,
+  "zero_std_group_fraction": 1.0,
+  "reason_counts": {
+    "incorrect_answer": 2,
+    "missing_final_answer": 205,
+    "invalid_final_answer": 49
+  },
+  "selected_prompt_id": null,
+  "attempts": [
+    {
+      "prompt_id": "gsm8k/main/train/02348",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "incorrect_answer": 1,
+        "missing_final_answer": 3
+      },
+      "response_lengths": [
+        6,
+        5,
+        5,
+        5
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/06469",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        4,
+        5,
+        128,
+        128
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04674",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 2,
+        "invalid_final_answer": 2
+      },
+      "response_lengths": [
+        11,
+        6,
+        4,
+        6
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05645",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        30,
+        128,
+        128,
+        128
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/07368",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        17,
+        3
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00688",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 1,
+        "missing_final_answer": 3
+      },
+      "response_lengths": [
+        7,
+        128,
+        128,
+        61
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/01214",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        19,
+        2,
+        2,
+        128
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/01809",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 3,
+        "missing_final_answer": 1
+      },
+      "response_lengths": [
+        8,
+        8,
+        6,
+        8
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02944",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        5,
+        128,
+        128
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04629",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        5,
+        5,
+        8,
+        128
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05003",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 2,
+        "missing_final_answer": 2
+      },
+      "response_lengths": [
+        6,
+        128,
+        4,
+        22
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05492",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        4,
+        8,
+        3,
+        42
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05955",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 2,
+        "invalid_final_answer": 2
+      },
+      "response_lengths": [
+        128,
+        48,
+        5,
+        5
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00535",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        128,
+        6,
+        50,
+        36
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/01804",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 1,
+        "missing_final_answer": 3
+      },
+      "response_lengths": [
+        6,
+        13,
+        14,
+        3
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02293",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        5,
+        48
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02566",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        33,
+        8,
+        59,
+        128
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/03500",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        8,
+        128,
+        128
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/03952",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        4,
+        3,
+        6,
+        128
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04470",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        60,
+        128,
+        128
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05225",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        128,
+        128,
+        5,
+        5
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/06675",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 2,
+        "missing_final_answer": 2
+      },
+      "response_lengths": [
+        6,
+        15,
+        9,
+        128
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/06982",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        24,
+        128,
+        128,
+        128
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/07242",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        56,
+        124,
+        8
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00807",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        7,
+        15,
+        128,
+        8
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/01198",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        35,
+        128,
+        9,
+        4
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02020",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 2,
+        "missing_final_answer": 2
+      },
+      "response_lengths": [
+        7,
+        22,
+        5,
+        4
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02148",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 2,
+        "invalid_final_answer": 2
+      },
+      "response_lengths": [
+        6,
+        18,
+        22,
+        6
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02160",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        51,
+        5,
+        24,
+        7
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02497",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        20,
+        128,
+        6,
+        70
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02657",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        25,
+        128,
+        6,
+        128
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04585",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "truncation_count": 4,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05172",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        104,
+        14,
+        128,
+        9
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05657",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 2,
+        "invalid_final_answer": 2
+      },
+      "response_lengths": [
+        128,
+        128,
+        9,
+        6
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05844",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "truncation_count": 4,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/06148",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        3,
+        128,
+        3,
+        4
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/07291",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        23,
+        5,
+        6,
+        128
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00959",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        5,
+        128,
+        4,
+        128
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/01794",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "truncation_count": 4,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02158",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 2,
+        "missing_final_answer": 2
+      },
+      "response_lengths": [
+        6,
+        128,
+        6,
+        11
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02550",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        128,
+        3
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02563",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 2,
+        "invalid_final_answer": 2
+      },
+      "response_lengths": [
+        4,
+        128,
+        6,
+        6
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02615",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        4,
+        128,
+        8,
+        128
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02821",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        128,
+        9,
+        15,
+        128
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/02960",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "truncation_count": 4,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/03632",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 2,
+        "missing_final_answer": 2
+      },
+      "response_lengths": [
+        6,
+        71,
+        8,
+        93
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/03821",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        128,
+        128,
+        128,
+        9
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/03905",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        19,
+        10,
+        6,
+        14
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/03928",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        4,
+        4,
+        106
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04022",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 2,
+        "invalid_final_answer": 2
+      },
+      "response_lengths": [
+        128,
+        128,
+        5,
+        6
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04126",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 2,
+        "invalid_final_answer": 2
+      },
+      "response_lengths": [
+        4,
+        77,
+        5,
+        5
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04207",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        128,
+        8
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04404",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        128,
+        6,
+        4,
+        108
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04481",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        4,
+        128,
+        128
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/04717",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        3,
+        128,
+        5
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05042",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        4,
+        4,
+        6,
+        3
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05546",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        21,
+        128,
+        128,
+        128
+      ],
+      "truncation_count": 3,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/05922",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        128,
+        5,
+        128,
+        21
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/06147",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        112,
+        42,
+        42,
+        2
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/06270",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "invalid_final_answer": 2,
+        "missing_final_answer": 2
+      },
+      "response_lengths": [
+        6,
+        128,
+        6,
+        56
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/06598",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        120,
+        128,
+        89,
+        19
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/07114",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "truncation_count": 4,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/07336",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        5,
+        4,
+        6,
+        128
+      ],
+      "truncation_count": 1,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/07472",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "incorrect_answer": 1
+      },
+      "response_lengths": [
+        128,
+        128,
+        7,
+        4
+      ],
+      "truncation_count": 2,
+      "zero_variance": true
+    }
+  ]
+}

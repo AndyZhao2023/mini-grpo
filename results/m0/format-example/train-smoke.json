@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "prompt_id": "gsm8k/main/train/01214",
+  "policy_before": "step-000000",
+  "policy_after": "step-000001",
+  "model_revision_before": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "reward_vector": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+  ],
+  "advantage_vector": [
+    -0.5773502558562927,
+    -0.5773502558562927,
+    1.7320507675688783,
+    -0.5773502558562927
+  ],
+  "group_size": 4,
+  "update_epochs": 1,
+  "data_age_updates": 0,
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 1e-06,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "epsilon": 1e-08,
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0
+  },
+  "metrics": {
+    "pre_loss": 3.2782554626464844e-07,
+    "post_loss": -0.01746147871017456,
+    "pre_max_ratio_deviation": 3.325939178466797e-05,
+    "post_max_ratio_deviation": 6.261172771453857,
+    "pre_clip_fraction": 0.0,
+    "post_clip_fraction": 0.21985815465450287,
+    "post_approx_kl_old": 0.1914064884185791,
+    "gradient_norm_before_clip": 30.897811889648438,
+    "valid_token_count": 141
+  },
+  "elapsed_seconds": 2.6770657500019297,
+  "checkpoint_dir": "results/m0/format-example/checkpoints/step-000001",
+  "optimizer_state_saved": false,
+  "scan_record": "results/m0/format-example/train-smoke-scan.json"
+}

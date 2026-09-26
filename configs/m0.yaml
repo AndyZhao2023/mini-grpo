@@ -43,6 +43,14 @@ algorithm:
   advantage_epsilon: 1.0e-8
   loss_reduction: response_then_group_then_batch
 
+optimizer:
+  name: AdamW
+  learning_rate: 1.0e-6
+  betas: [0.9, 0.999]
+  epsilon: 1.0e-8
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+
 evaluation:
   do_sample: false
   max_new_tokens: 128
@@ -53,3 +61,4 @@ smoke:
   group_size: 4
   max_new_tokens: 16
   backward_responses: 2
+  grpo_update_epochs: 1
