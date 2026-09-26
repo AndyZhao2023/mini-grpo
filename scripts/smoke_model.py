@@ -48,6 +48,7 @@ def run(config_path: Path, output_path: Path) -> int:
             "dtype": model_config["dtype"],
             "group_size": smoke["group_size"],
             "max_new_tokens": smoke["max_new_tokens"],
+            "repetition_penalty": generation["repetition_penalty"],
         })
         if smoke["prompt_count"] != len(SMOKE_QUESTIONS):
             raise ValueError("smoke.prompt_count must match the fixed question count")
@@ -99,6 +100,7 @@ def run(config_path: Path, output_path: Path) -> int:
                     temperature=generation["temperature"],
                     top_p=generation["top_p"],
                     top_k=generation["top_k"],
+                    repetition_penalty=generation["repetition_penalty"],
                     max_new_tokens=smoke["max_new_tokens"],
                     eos_token_id=tokenizer.eos_token_id,
                     pad_token_id=tokenizer.eos_token_id,

@@ -11,13 +11,13 @@ The chosen baseline is [Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2
 ## Run Day 1 checks
 
 ```bash
-python3 -m unittest discover -s tests -v
-python3 -m compileall -q src scripts tests
 uv sync
+uv run python -m unittest discover -s tests -v
+uv run python -m compileall -q src scripts tests
 uv run python scripts/smoke_model.py --config configs/m0.yaml --output results/m0/day1-smoke.json
 ```
 
-The model smoke fetches the pinned ~1 GB model on first use. Its local test overrides only the generation length to 16 tokens; the M0 experiment default remains 128. It generates four samples for each of two fixed arithmetic prompts, then computes one backward pass on one response from each prompt. A nonzero exit and a JSON record with `status: failed` mean this check did not pass. The project can run the schema tests without any third-party dependency.
+The model smoke fetches the pinned ~1 GB model on first use. Its local test overrides only the generation length to 16 tokens; the M0 experiment default remains 128. It generates four samples for each of two fixed arithmetic prompts, then computes one backward pass on one response from each prompt. A nonzero exit and a JSON record with `status: failed` mean this check did not pass. The schema-only tests can run without third-party dependencies with `python3 -m unittest tests.test_schema -v`.
 
 ## Prepare the actual GSM8K train/validation data
 
@@ -28,7 +28,15 @@ uv run python -m scripts.prepare_data --config configs/m0.yaml --output results/
 
 This downloads only the pinned GSM8K `main/train` parquet file. The library's whole-repository split check is disabled because it also expects `test`; the loader instead verifies 7,473 source rows and the canonical row-content SHA-256 in the config. It then selects 200 original row positions by SHA-256 rank of `seed:index` with seed 42. The remaining 7,273 rows are the training partition. Original row positions become stable prompt IDs; the two partitions retain source order. [`results/m0/dataset-split.json`](results/m0/dataset-split.json) records the selected validation IDs, source hash, counts, and two prompt previews. The preview contains the question and system instruction, while the reference answer stays available only for later verification. The official GSM8K test split is not loaded by this command.
 
-The next implementation step is to generate `Trajectory` groups from these real prompts and recompute pre-update old-policy token log probabilities. Dataset preparation alone does not create rollouts or train the model.
+## Sample a real trajectory group
+
+```bash
+uv run python -m scripts.sample_rollout --config configs/m0.yaml --output results/m0/rollout-sample.jsonl
+```
+
+The command uses the first fixed training question, samples G=4 responses with at most 128 new tokens each, then runs the unchanged model on each prompt and response to obtain `old_log_probs` from raw logits. It persists four `Trajectory` lines and reads them back for group validation. [`results/m0/rollout-sample.jsonl`](results/m0/rollout-sample.jsonl) is the local evidence. EOS is kept as a valid response token, while padding after EOS is discarded; the stored mask therefore contains one entry per stored response token. The model's own generation settings include repetition_penalty=1.1, so this rollout explicitly uses 1.0 to match the M0 contract. The Day 1 smoke log was rerun with the same override.
+
+Reward and advantage are still null. This command does not update model weights or measure answer accuracy. The next implementation step is deterministic answer verification and outcome reward.
 
 ## M0 acceptance contract
 

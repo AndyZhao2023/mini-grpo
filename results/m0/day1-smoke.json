@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-09-25T12:37:05.508821+00:00",
+  "timestamp_utc": "2026-09-26T09:44:52.656267+00:00",
   "status": "passed",
   "stage": "complete",
   "config": "configs/m0.yaml",
@@ -13,15 +13,16 @@
   "dtype": "float32",
   "group_size": 4,
   "max_new_tokens": 16,
-  "load_seconds": 1.57,
-  "generation_seconds": 0.531,
+  "repetition_penalty": 1.0,
+  "load_seconds": 1.462,
+  "generation_seconds": 0.349,
   "generated": [
     {
       "question": "Mia has 3 apples and buys 4 more. How many apples does she have?",
       "sample_index": 0,
-      "response_tokens": 2,
+      "response_tokens": 8,
       "finish_reason": "eos",
-      "response_text": "5"
+      "response_text": "Mia has 3 apples."
     },
     {
       "question": "Mia has 3 apples and buys 4 more. How many apples does she have?",
@@ -40,23 +41,23 @@
     {
       "question": "Mia has 3 apples and buys 4 more. How many apples does she have?",
       "sample_index": 3,
-      "response_tokens": 4,
+      "response_tokens": 6,
       "finish_reason": "eos",
-      "response_text": "17."
+      "response_text": "3+4=7"
     },
     {
       "question": "A box has 12 pencils. Five are removed. How many remain?",
       "sample_index": 0,
-      "response_tokens": 16,
-      "finish_reason": "length",
-      "response_text": "5 also removed to make it a total of 12.\nThere is "
+      "response_tokens": 3,
+      "finish_reason": "eos",
+      "response_text": "17"
     },
     {
       "question": "A box has 12 pencils. Five are removed. How many remain?",
       "sample_index": 1,
-      "response_tokens": 6,
+      "response_tokens": 5,
       "finish_reason": "eos",
-      "response_text": "5. 37"
+      "response_text": "#### 7."
     },
     {
       "question": "A box has 12 pencils. Five are removed. How many remain?",
@@ -68,14 +69,14 @@
     {
       "question": "A box has 12 pencils. Five are removed. How many remain?",
       "sample_index": 3,
-      "response_tokens": 16,
-      "finish_reason": "length",
-      "response_text": "5回收题。由于盒子中有12个铅笔盒，五件"
+      "response_tokens": 2,
+      "finish_reason": "eos",
+      "response_text": "0"
     }
   ],
-  "backward_seconds": 0.318,
-  "backward_loss": 2.578826,
-  "first_gradient_norm": 79.099403,
-  "mps_allocated_bytes": 4029076480,
-  "elapsed_seconds": 2.419
+  "backward_seconds": 0.298,
+  "backward_loss": 0.652624,
+  "first_gradient_norm": 59.848015,
+  "mps_allocated_bytes": 4027241216,
+  "elapsed_seconds": 2.11
 }

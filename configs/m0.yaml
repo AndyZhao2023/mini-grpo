@@ -30,6 +30,7 @@ generation:
   temperature: 1.0
   top_p: 1.0
   top_k: 0
+  repetition_penalty: 1.0
   max_new_tokens: 128
   eos: tokenizer_eos
   extra_logits_processors: []
