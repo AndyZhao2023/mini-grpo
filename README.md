@@ -26,7 +26,7 @@ uv sync
 uv run python -m scripts.prepare_data --config configs/m0.yaml --output results/m0/dataset-split.json
 ```
 
-This downloads only the pinned GSM8K `main/train` parquet file. The library's whole-repository split check is disabled because it also expects `test`; the loader instead verifies 7,473 source rows and the canonical row-content SHA-256 in the config. It then selects 200 original row positions by SHA-256 rank of `seed:index` with seed 42. The remaining 7,273 rows are the training partition. Original row positions become stable prompt IDs; the two partitions retain source order. [`results/m0/dataset-split.json`](results/m0/dataset-split.json) records the selected validation IDs, source hash, counts, and two prompt previews. The preview contains the question and system instruction, while the reference answer stays available only for later verification. The official GSM8K test split is not loaded by this command.
+This loads only the pinned GSM8K `main/train` parquet file, reusing the exact revision's local Hugging Face cache when available. The library's whole-repository split check is disabled on the download path because it also expects `test`; both paths verify 7,473 source rows and the canonical row-content SHA-256 in the config. The loader then selects 200 original row positions by SHA-256 rank of `seed:index` with seed 42. The remaining 7,273 rows are the training partition. Original row positions become stable prompt IDs; the two partitions retain source order. [`results/m0/dataset-split.json`](results/m0/dataset-split.json) records the selected validation IDs, source hash, counts, and two prompt previews. The preview contains the question and system instruction, while the reference answer stays available only for verification. The official GSM8K test split is not loaded by this command.
 
 ## Sample a real trajectory group
 
@@ -36,7 +36,15 @@ uv run python -m scripts.sample_rollout --config configs/m0.yaml --output result
 
 The command uses the first fixed training question, samples G=4 responses with at most 128 new tokens each, then runs the unchanged model on each prompt and response to obtain `old_log_probs` from raw logits. It persists four `Trajectory` lines and reads them back for group validation. [`results/m0/rollout-sample.jsonl`](results/m0/rollout-sample.jsonl) is the local evidence. EOS is kept as a valid response token, while padding after EOS is discarded; the stored mask therefore contains one entry per stored response token. The model's own generation settings include repetition_penalty=1.1, so this rollout explicitly uses 1.0 to match the M0 contract. The Day 1 smoke log was rerun with the same override.
 
-Reward and advantage are still null. This command does not update model weights or measure answer accuracy. The next implementation step is deterministic answer verification and outcome reward.
+The rollout command leaves reward and advantage null. It does not update model weights or measure answer accuracy.
+
+## Score the saved trajectories
+
+```bash
+uv run python -m scripts.score_rollout --config configs/m0.yaml --input results/m0/rollout-sample.jsonl --output results/m0/rewarded-sample.jsonl
+```
+
+The verifier compares only the last nonblank `#### <number>` line with the pinned reference answer. It accepts signed integers, decimal numbers, and properly grouped thousands separators, comparing numeric values exactly. Missing or malformed final lines receive reward 0 with a reason code; an invalid reference answer stops scoring. The original rollout file is preserved, and [`results/m0/rewarded-sample.jsonl`](results/m0/rewarded-sample.jsonl) records the four scored trajectories. This sample has **four `missing_final_answer` results and four zero rewards**: two responses calculate 72 in prose without the required final line, one is incorrect/incomplete, and one reaches the 128-token limit. This is a single-group diagnostic, not an accuracy estimate. Advantage remains null; group normalization is the next step.
 
 ## M0 acceptance contract
 

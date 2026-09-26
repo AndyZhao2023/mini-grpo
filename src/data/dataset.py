@@ -76,22 +76,33 @@ def split_train_rows(
 
 
 def load_pinned_train(data_config: Mapping[str, object]) -> TrainValidationSplit:
-    """Fetch only GSM8K `train` from the exact dataset repository commit."""
+    """Load only GSM8K `train` from the exact repository commit, using cache if present."""
     revision = data_config["revision"]
     if not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision):
         raise ValueError("data.revision must be a full 40-character commit SHA")
     if data_config["id"] != "openai/gsm8k" or data_config["name"] != "main":
         raise ValueError("this loader requires openai/gsm8k main")
-    from datasets import load_dataset
+    from huggingface_hub import try_to_load_from_cache
 
-    rows = load_dataset(
-        data_config["id"], name=data_config["name"],
-        data_files={"train": "main/train-00000-of-00001.parquet"},
-        split="train", revision=revision,
-        # The repository metadata declares test as well; the explicit train-only
-        # file subset would otherwise fail the library's split-set comparison.
-        verification_mode="no_checks",
+    cached = try_to_load_from_cache(
+        data_config["id"], "main/train-00000-of-00001.parquet",
+        revision=revision, repo_type="dataset",
     )
+    if isinstance(cached, str):
+        import pyarrow.parquet as parquet
+
+        rows = parquet.read_table(cached, columns=["question", "answer"]).to_pylist()
+    else:
+        from datasets import load_dataset
+
+        rows = load_dataset(
+            data_config["id"], name=data_config["name"],
+            data_files={"train": "main/train-00000-of-00001.parquet"},
+            split="train", revision=revision,
+            # The repository metadata declares test as well; the explicit train-only
+            # file subset would otherwise fail the library's split-set comparison.
+            verification_mode="no_checks",
+        )
     if len(rows) != data_config["expected_train_size"]:
         raise ValueError(
             f"expected_train_size={data_config['expected_train_size']}, got {len(rows)}"

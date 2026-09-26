@@ -1,7 +1,12 @@
 import sys
+import tempfile
 import unittest
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
+
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 from src.data.dataset import build_manifest, build_prompt_messages, load_pinned_train, split_train_rows
 
@@ -64,7 +69,9 @@ class DatasetTests(unittest.TestCase):
             calls.append((args, kwargs))
             return fixture_rows()
 
-        with patch.dict(sys.modules, {"datasets": SimpleNamespace(load_dataset=fake_load_dataset)}):
+        with patch("huggingface_hub.try_to_load_from_cache", return_value=None), patch.dict(
+            sys.modules, {"datasets": SimpleNamespace(load_dataset=fake_load_dataset)},
+        ):
             split = load_pinned_train(DATA_CONFIG)
         self.assertEqual(len(split.training), 7)
         self.assertEqual(calls, [(('openai/gsm8k',), {
@@ -78,7 +85,9 @@ class DatasetTests(unittest.TestCase):
         def fake_load_dataset(*args, **kwargs):
             return fixture_rows(9)
 
-        with patch.dict(sys.modules, {"datasets": SimpleNamespace(load_dataset=fake_load_dataset)}):
+        with patch("huggingface_hub.try_to_load_from_cache", return_value=None), patch.dict(
+            sys.modules, {"datasets": SimpleNamespace(load_dataset=fake_load_dataset)},
+        ):
             with self.assertRaisesRegex(ValueError, "expected_train_size"):
                 load_pinned_train(DATA_CONFIG)
 
@@ -89,9 +98,29 @@ class DatasetTests(unittest.TestCase):
         def fake_load_dataset(*args, **kwargs):
             return changed
 
-        with patch.dict(sys.modules, {"datasets": SimpleNamespace(load_dataset=fake_load_dataset)}):
+        with patch("huggingface_hub.try_to_load_from_cache", return_value=None), patch.dict(
+            sys.modules, {"datasets": SimpleNamespace(load_dataset=fake_load_dataset)},
+        ):
             with self.assertRaisesRegex(ValueError, "expected_train_sha256"):
                 load_pinned_train(DATA_CONFIG)
+
+    def test_loader_reads_exact_cached_parquet_and_checks_content(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "train.parquet"
+            pq.write_table(pa.Table.from_pylist(fixture_rows()), path)
+            with patch("huggingface_hub.try_to_load_from_cache", return_value=str(path)) as lookup:
+                split = load_pinned_train(DATA_CONFIG)
+            self.assertEqual(len(split.training), 7)
+            lookup.assert_called_once_with(
+                "openai/gsm8k", "main/train-00000-of-00001.parquet",
+                revision="a" * 40, repo_type="dataset",
+            )
+            changed = fixture_rows()
+            changed[0]["question"] = "Different question?"
+            pq.write_table(pa.Table.from_pylist(changed), path)
+            with patch("huggingface_hub.try_to_load_from_cache", return_value=str(path)):
+                with self.assertRaisesRegex(ValueError, "expected_train_sha256"):
+                    load_pinned_train(DATA_CONFIG)
 
     def test_invalid_rows_and_split_are_rejected(self) -> None:
         with self.assertRaisesRegex(ValueError, "validation_size"):

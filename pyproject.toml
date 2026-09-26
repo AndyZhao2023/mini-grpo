@@ -5,6 +5,8 @@ description = "A reproducible single-turn RLVR/GRPO learning project"
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "datasets>=4,<5",
+  "huggingface-hub>=0.34,<2",
+  "pyarrow>=20,<26",
   "PyYAML>=6.0,<7",
   "torch>=2.4,<3",
   "transformers>=4.44,<5",
