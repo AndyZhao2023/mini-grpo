@@ -1,0 +1,14 @@
+{
+  "prompt_id": "gsm8k/main/train/00000",
+  "policy_version": "step-000000",
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "group_size": 4,
+  "valid_token_count": 193,
+  "policy_loss": 0.0,
+  "mean_ratio": 1.0,
+  "max_ratio_deviation": 0.0,
+  "clip_fraction": 0.0,
+  "approx_kl_old": 0.0,
+  "pre_update_ratio_tolerance": 0.001,
+  "no_optimizer_step": true
+}

@@ -52,7 +52,17 @@ The verifier compares only the last nonblank `#### <number>` line with the pinne
 uv run python -m scripts.normalize_advantages --config configs/m0.yaml --input results/m0/rewarded-sample.jsonl --output results/m0/advantaged-sample.jsonl
 ```
 
-For rewards `r_1...r_G`, this uses the population standard deviation and sets `A_i = (r_i - mean(r)) / (std(r) + 1e-8)`. An all-equal group receives exact zero advantages. The command writes a separate [`results/m0/advantaged-sample.jsonl`](results/m0/advantaged-sample.jsonl) and validates that all required trajectory fields are present. The current real group has mean 0, standard deviation 0, and four advantages of 0. It is structurally ready for the loss calculation but contains no learning signal. The next step is the masked, clipped GRPO loss; useful training also needs groups with reward variation.
+For rewards `r_1...r_G`, this uses the population standard deviation and sets `A_i = (r_i - mean(r)) / (std(r) + 1e-8)`. An all-equal group receives exact zero advantages. The command writes a separate [`results/m0/advantaged-sample.jsonl`](results/m0/advantaged-sample.jsonl) and validates that all required trajectory fields are present. The current real group has mean 0, standard deviation 0, and four advantages of 0; it contains no learning signal.
+
+## Check the clipped GRPO loss
+
+```bash
+uv run python -m scripts.check_grpo_loss --config configs/m0.yaml --input results/m0/advantaged-sample.jsonl --output results/m0/loss-smoke.json
+```
+
+The check loads the pinned model in evaluation mode, recomputes raw current-policy log probabilities for the saved response tokens, and calculates `ratio = exp(new_log_prob - old_log_prob)`. The loss takes the smaller of `ratio * advantage` and its clipped counterpart on valid response tokens, averages tokens **within each response**, then averages responses within the group. Prompt and right-padding tokens are excluded; generated EOS is included. M0 uses `clip_epsilon=0.2` and `beta=0`. The code is differentiable, while this check uses no gradients or optimizer step.
+
+[`results/m0/loss-smoke.json`](results/m0/loss-smoke.json) records 193 valid response tokens, mean pre-update ratio 1.0, maximum ratio deviation 0, clip fraction 0, approximate KL 0, and policy loss 0. The zero loss follows from this group's four zero advantages. Unit tests use nonzero advantages to verify both clipping directions and gradients. The next step is an actual optimizer smoke test with groups that contain reward variation.
 
 ## M0 acceptance contract
 
