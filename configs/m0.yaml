@@ -14,6 +14,8 @@ data:
   id: openai/gsm8k
   name: main
   revision: 740312add88f781978c0658806c59bc2815b9866
+  expected_train_size: 7473
+  expected_train_sha256: dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca
   validation_size: 200
   split_seed: 42
   final_test_split: test
