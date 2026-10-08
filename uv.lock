@@ -429,7 +429,7 @@ requires-dist = [
     { name = "pyarrow", specifier = ">=20,<26" },
     { name = "pyyaml", specifier = ">=6.0,<7" },
     { name = "torch", specifier = ">=2.4,<3" },
-    { name = "transformers", specifier = ">=4.44,<5" },
+    { name = "transformers", specifier = ">=4.57,<5" },
 ]
 
 [[package]]

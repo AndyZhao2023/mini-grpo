@@ -1,0 +1,101 @@
+{
+  "status": "completed",
+  "requested_steps": 2,
+  "completed_steps": 2,
+  "config_sha256": "c05cdcf5b855fc5202e95821bbb3af3090f3ead4b233a3107dc8012c10523094",
+  "dataset_revision": "740312add88f781978c0658806c59bc2815b9866",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "training_count": 7273,
+  "validation_count": 200,
+  "initial_model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "torch_version": "2.14.0",
+  "transformers_version": "4.57.6",
+  "generation_use_model_defaults": false,
+  "baseline": {
+    "question_count": 200,
+    "correct_count": 9,
+    "accuracy": 0.045,
+    "reason_counts": {
+      "missing_final_answer": 171,
+      "invalid_final_answer": 1,
+      "incorrect_answer": 19,
+      "correct_answer": 9
+    },
+    "truncation_count": 77,
+    "mean_response_tokens": 78.985
+  },
+  "final": {
+    "question_count": 200,
+    "correct_count": 9,
+    "accuracy": 0.045,
+    "reason_counts": {
+      "missing_final_answer": 169,
+      "incorrect_answer": 22,
+      "correct_answer": 9
+    },
+    "truncation_count": 75,
+    "mean_response_tokens": 77.445
+  },
+  "steps": [
+    {
+      "policy_before": "step-000000",
+      "policy_after": "step-000001",
+      "prompt_id": "gsm8k/main/train/01214",
+      "reward_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "advantage_vector": [
+        -0.5773502558562927,
+        -0.5773502558562927,
+        1.7320507675688783,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 3.2782554626464844e-07,
+        "post_loss": -0.015604734420776367,
+        "pre_max_ratio_deviation": 3.325939178466797e-05,
+        "post_max_ratio_deviation": 0.5341370105743408,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.03546099364757538,
+        "post_approx_kl_old": 0.0039328718557953835,
+        "gradient_norm_before_clip": 30.897811889648438,
+        "valid_token_count": 141
+      },
+      "checkpoint_dir": "results/m0/end-to-end-v2/checkpoints/step-000001",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000001",
+      "policy_after": "step-000002",
+      "prompt_id": "gsm8k/main/train/01809",
+      "reward_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "advantage_vector": [
+        -0.5773502558562927,
+        -0.5773502558562927,
+        1.7320507675688783,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 4.023313522338867e-07,
+        "post_loss": -0.010593608021736145,
+        "pre_max_ratio_deviation": 3.063678741455078e-05,
+        "post_max_ratio_deviation": 0.26138603687286377,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.007692307699471712,
+        "post_approx_kl_old": 0.0010125419357791543,
+        "gradient_norm_before_clip": 25.461685180664062,
+        "valid_token_count": 130
+      },
+      "checkpoint_dir": "results/m0/end-to-end-v2/checkpoints/step-000002",
+      "optimizer_state_saved": false
+    }
+  ]
+}

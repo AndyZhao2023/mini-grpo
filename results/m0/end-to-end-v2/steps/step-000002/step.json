@@ -1,0 +1,30 @@
+{
+  "policy_before": "step-000001",
+  "policy_after": "step-000002",
+  "prompt_id": "gsm8k/main/train/01809",
+  "reward_vector": [
+    0.0,
+    0.0,
+    1.0,
+    0.0
+  ],
+  "advantage_vector": [
+    -0.5773502558562927,
+    -0.5773502558562927,
+    1.7320507675688783,
+    -0.5773502558562927
+  ],
+  "metrics": {
+    "pre_loss": 4.023313522338867e-07,
+    "post_loss": -0.010593608021736145,
+    "pre_max_ratio_deviation": 3.063678741455078e-05,
+    "post_max_ratio_deviation": 0.26138603687286377,
+    "pre_clip_fraction": 0.0,
+    "post_clip_fraction": 0.007692307699471712,
+    "post_approx_kl_old": 0.0010125419357791543,
+    "gradient_norm_before_clip": 25.461685180664062,
+    "valid_token_count": 130
+  },
+  "checkpoint_dir": "results/m0/end-to-end-v2/checkpoints/step-000002",
+  "optimizer_state_saved": false
+}

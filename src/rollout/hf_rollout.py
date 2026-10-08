@@ -115,6 +115,8 @@ def sample_group(
             input_ids=prompt_ids,
             attention_mask=torch.ones_like(prompt_ids),
             generation_config=sampling,
+            # Preserve the raw-logit sampling distribution used by old_log_probs.
+            use_model_defaults=False,
         )
     if sequences.ndim != 2 or sequences.shape[0] != group_size:
         raise ValueError("generation did not return one complete group")

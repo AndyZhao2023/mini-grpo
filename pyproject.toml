@@ -9,7 +9,7 @@ dependencies = [
   "pyarrow>=20,<26",
   "PyYAML>=6.0,<7",
   "torch>=2.4,<3",
-  "transformers>=4.44,<5",
+  "transformers>=4.57,<5",
 ]
 
 [tool.uv]

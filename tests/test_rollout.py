@@ -36,9 +36,12 @@ class FakeModel(torch.nn.Module):
         super().__init__()
         self.forward_grad_modes = []
         self.generate_config = None
+        self.use_model_defaults = None
 
-    def generate(self, *, input_ids, attention_mask, generation_config):
+    def generate(self, *, input_ids, attention_mask, generation_config,
+                 use_model_defaults=None):
         self.generate_config = generation_config
+        self.use_model_defaults = use_model_defaults
         assert input_ids.tolist() == [[1, 2]]
         assert attention_mask.tolist() == [[1, 1]]
         return torch.tensor([
@@ -99,6 +102,7 @@ class RolloutTests(unittest.TestCase):
         self.assertEqual(model.forward_grad_modes, [False] * 4)
         self.assertEqual(model.generate_config.repetition_penalty, 1.0)
         self.assertEqual(model.generate_config.top_k, 0)
+        self.assertIs(model.use_model_defaults, False)
         self.assertEqual(model.generate_config.num_return_sequences, 4)
         self.assertEqual([item.finish_reason for item in group], ["eos", "eos", "length", "eos"])
         self.assertEqual(group[0].response_token_ids, [3, 9])
