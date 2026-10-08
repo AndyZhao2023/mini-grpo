@@ -13,19 +13,15 @@ import torch
 import yaml
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from src.data.dataset import build_prompt_messages, load_pinned_train
-from src.data.schema import read_jsonl, validate_group
+from src.data.dataset import MathProblem, build_prompt_messages, load_pinned_train
+from src.data.schema import Trajectory, read_jsonl, validate_group
 from src.grpo.advantage import normalize_group_advantages
-from src.grpo.trainer import run_one_grpo_step
+from src.grpo.trainer import StepMetrics, run_one_grpo_step
 from src.reward.math_verifier import verify_answer
 
 
-def main(
-    config_path: Path, input_path: Path, scan_path: Path,
-    output_path: Path, checkpoint_dir: Path,
-) -> None:
-    config_bytes = config_path.read_bytes()
-    config = yaml.safe_load(config_bytes)
+def _validate_smoke_config(config: dict, checkpoint_dir: Path) -> None:
+    """Reject unsupported training settings before reading rollout artifacts."""
     model_config, algorithm, optimizer_config = (
         config["model"], config["algorithm"], config["optimizer"]
     )
@@ -40,6 +36,12 @@ def main(
     if checkpoint_dir.exists():
         raise FileExistsError(f"checkpoint directory already exists: {checkpoint_dir}")
 
+
+def _load_verified_group(
+    config: dict, config_bytes: bytes, input_path: Path, scan_path: Path,
+) -> tuple[list[Trajectory], MathProblem]:
+    """Match a complete selected group to its scan record and pinned training row."""
+    model_config, algorithm = config["model"], config["algorithm"]
     group = read_jsonl(input_path)
     validate_group(group, require_complete=True)
     if group[0].group_size != config["generation"]["group_size"]:
@@ -75,8 +77,13 @@ def main(
         raise ValueError("stored advantage differs from group normalization")
     if len({item.reward for item in group}) < 2:
         raise ValueError("one-step smoke requires mixed rewards")
+    return group, problem
 
+
+def _load_initial_policy(config: dict, problem: MathProblem, group: list[Trajectory]):
+    """Load the pinned tokenizer/model and confirm the saved prompt tokens."""
     torch.manual_seed(config["seed"])
+    model_config = config["model"]
     tokenizer = AutoTokenizer.from_pretrained(
         model_config["id"], revision=model_config["tokenizer_revision"],
         trust_remote_code=False,
@@ -94,22 +101,15 @@ def main(
         model_config["id"], revision=model_config["revision"],
         dtype=torch.float32, trust_remote_code=False,
     ).to(model_config["device"])
-    optimizer = torch.optim.AdamW(
-        model.parameters(), lr=optimizer_config["learning_rate"],
-        betas=tuple(optimizer_config["betas"]), eps=optimizer_config["epsilon"],
-        weight_decay=optimizer_config["weight_decay"],
-    )
-    started = time.perf_counter()
-    metrics = run_one_grpo_step(
-        model, optimizer, group,
-        pad_token_id=pad_token_id, device=model_config["device"],
-        clip_epsilon=algorithm["clip_epsilon"],
-        loss_reduction=algorithm["loss_reduction"],
-        max_grad_norm=optimizer_config["max_grad_norm"],
-    )
-    checkpoint_dir.mkdir(parents=True)
-    model.save_pretrained(checkpoint_dir, safe_serialization=True, max_shard_size="1GB")
-    tokenizer.save_pretrained(checkpoint_dir)
+    return model, tokenizer, pad_token_id
+
+
+def _write_report(
+    config: dict, group: list[Trajectory], metrics: StepMetrics,
+    started: float, checkpoint_dir: Path, output_path: Path, scan_path: Path,
+) -> None:
+    """Write the step metrics and the location of the saved model checkpoint."""
+    model_config, optimizer_config = config["model"], config["optimizer"]
     record = {
         "status": "passed",
         "prompt_id": group[0].prompt_id,
@@ -135,6 +135,37 @@ def main(
         f"grad_norm={metrics.gradient_norm_before_clip:.6g}, "
         f"post_kl={metrics.post_approx_kl_old:.6g} -> {output_path}"
     )
+
+
+def main(
+    config_path: Path, input_path: Path, scan_path: Path,
+    output_path: Path, checkpoint_dir: Path,
+) -> None:
+    config_bytes = config_path.read_bytes()
+    config = yaml.safe_load(config_bytes)
+    _validate_smoke_config(config, checkpoint_dir)
+    group, problem = _load_verified_group(config, config_bytes, input_path, scan_path)
+    model, tokenizer, pad_token_id = _load_initial_policy(config, problem, group)
+    model_config, algorithm, optimizer_config = (
+        config["model"], config["algorithm"], config["optimizer"]
+    )
+    optimizer = torch.optim.AdamW(
+        model.parameters(), lr=optimizer_config["learning_rate"],
+        betas=tuple(optimizer_config["betas"]), eps=optimizer_config["epsilon"],
+        weight_decay=optimizer_config["weight_decay"],
+    )
+    started = time.perf_counter()
+    metrics = run_one_grpo_step(
+        model, optimizer, group,
+        pad_token_id=pad_token_id, device=model_config["device"],
+        clip_epsilon=algorithm["clip_epsilon"],
+        loss_reduction=algorithm["loss_reduction"],
+        max_grad_norm=optimizer_config["max_grad_norm"],
+    )
+    checkpoint_dir.mkdir(parents=True)
+    model.save_pretrained(checkpoint_dir, safe_serialization=True, max_shard_size="1GB")
+    tokenizer.save_pretrained(checkpoint_dir)
+    _write_report(config, group, metrics, started, checkpoint_dir, output_path, scan_path)
 
 
 if __name__ == "__main__":
