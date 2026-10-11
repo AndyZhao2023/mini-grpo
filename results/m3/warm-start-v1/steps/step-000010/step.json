@@ -1,0 +1,34 @@
+{
+  "policy_before": "step-000009",
+  "policy_after": "step-000010",
+  "rollout_policy_version": "step-000009",
+  "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000010",
+  "update_epoch": 1,
+  "data_age_updates": 0,
+  "prompt_id": "gsm8k/main/train/02803",
+  "reward_vector": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "advantage_vector": [
+    1.7320507675688783,
+    -0.5773502558562927,
+    -0.5773502558562927,
+    -0.5773502558562927
+  ],
+  "metrics": {
+    "pre_loss": 2.16066837310791e-06,
+    "post_loss": -0.029642239212989807,
+    "pre_max_ratio_deviation": 3.409385681152344e-05,
+    "post_max_ratio_deviation": 0.14467430114746094,
+    "pre_clip_fraction": 0.0,
+    "post_clip_fraction": 0.0,
+    "post_approx_kl_old": 0.000106402876554057,
+    "gradient_norm_before_clip": 181.55270385742188,
+    "valid_token_count": 218
+  },
+  "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000010",
+  "optimizer_state_saved": false
+}

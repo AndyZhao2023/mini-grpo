@@ -1,0 +1,223 @@
+{
+  "policy_version": "step-000004",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "config_sha256": "ac53217a2def5a178620108ff1a740ef77df08d9557bf78d4df6b6e375e850c2",
+  "order": "shortest",
+  "max_prompts": 64,
+  "scanned_prompts": 10,
+  "zero_std_group_fraction": 0.9,
+  "reason_counts": {
+    "missing_final_answer": 34,
+    "incorrect_answer": 5,
+    "correct_answer": 1
+  },
+  "selected_prompt_id": "gsm8k/main/train/01262",
+  "attempts": [
+    {
+      "prompt_id": "gsm8k/main/train/06665",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "incorrect_answer": 1
+      },
+      "response_lengths": [
+        60,
+        51,
+        150,
+        120
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/07099",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "incorrect_answer": 1
+      },
+      "response_lengths": [
+        27,
+        25,
+        36,
+        48
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00170",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "incorrect_answer": 1
+      },
+      "response_lengths": [
+        3,
+        33,
+        35,
+        40
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00196",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        34,
+        56,
+        56,
+        43
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00215",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "incorrect_answer": 1
+      },
+      "response_lengths": [
+        39,
+        73,
+        44,
+        95
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00534",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        84,
+        2,
+        72,
+        109
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/00656",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 3,
+        "incorrect_answer": 1
+      },
+      "response_lengths": [
+        37,
+        30,
+        37,
+        35
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/01135",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        27,
+        39,
+        17,
+        54
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/01259",
+      "rewards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "missing_final_answer": 4
+      },
+      "response_lengths": [
+        171,
+        108,
+        43,
+        28
+      ],
+      "truncation_count": 0,
+      "zero_variance": true
+    },
+    {
+      "prompt_id": "gsm8k/main/train/01262",
+      "rewards": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "correct_answer": 1,
+        "missing_final_answer": 3
+      },
+      "response_lengths": [
+        74,
+        37,
+        101,
+        107
+      ],
+      "truncation_count": 0,
+      "zero_variance": false
+    }
+  ]
+}

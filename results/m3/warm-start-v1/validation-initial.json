@@ -1,0 +1,13 @@
+{
+  "question_count": 200,
+  "correct_count": 2,
+  "accuracy": 0.01,
+  "reason_counts": {
+    "missing_final_answer": 182,
+    "incorrect_answer": 11,
+    "correct_answer": 2,
+    "invalid_final_answer": 5
+  },
+  "truncation_count": 63,
+  "mean_response_tokens": 73.52
+}

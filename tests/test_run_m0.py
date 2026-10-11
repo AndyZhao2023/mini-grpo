@@ -112,6 +112,28 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual((output / "steps/step-000002/step.json").exists(), True)
             self.assertEqual((output / "checkpoints/step-000002/weights.txt").read_text(), "2")
 
+    def test_skip_scanned_prompts_uses_distinct_scan_candidates(self):
+        config = {**CONFIG, "run": {**CONFIG["run"], "skip_scanned_prompts": True}}
+        scanned = []
+
+        def scan(problems, rollout_fn, algorithm_config, max_prompts):
+            scanned.append(problems[0].prompt_id)
+            return selected_scan(problems, rollout_fn, algorithm_config, max_prompts)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            result = run_cycles(
+                self.model, self.tokenizer, object(), self.split, config,
+                Path(tmp) / "run", config_sha256="config-hash",
+                sample_fn=lambda model, tokenizer, problem, config, version: rollout(problem, version),
+                scan_fn=scan, update_fn=self.update, evaluation_fn=self.evaluate,
+                dataset_manifest={"selection": "predeclared"},
+            )
+            self.assertEqual(result["status"], "completed")
+            self.assertEqual(scanned, ["train/1", "train/2"])
+            self.assertEqual(result["unique_scanned_prompt_count"], 2)
+            self.assertEqual(json.loads((Path(tmp) / "run/dataset-split.json").read_text()),
+                             {"selection": "predeclared"})
+
     def test_two_updates_reuse_one_rollout_and_old_probabilities(self):
         config = {**CONFIG, "algorithm": {**CONFIG["algorithm"], "update_epochs": 2}}
         sampled = []

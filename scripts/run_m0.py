@@ -47,6 +47,8 @@ def _validate_run(config: dict, split: TrainValidationSplit) -> None:
         raise ValueError("run.update_steps must be divisible by algorithm.update_epochs")
     if run["order"] not in ("original", "shortest"):
         raise ValueError("run.order must be original or shortest")
+    if type(run.get("skip_scanned_prompts", False)) is not bool:
+        raise ValueError("run.skip_scanned_prompts must be boolean")
     bound = run["max_post_approx_kl_old"]
     if type(bound) not in (int, float) or not math.isfinite(bound) or bound <= 0:
         raise ValueError("run.max_post_approx_kl_old must be finite and positive")
@@ -61,6 +63,7 @@ def run_cycles(
     output_dir: Path, *, config_sha256: str,
     sample_fn=sample_group, scan_fn=scan_for_mixed_group,
     update_fn=run_one_grpo_step, evaluation_fn=evaluate_model,
+    dataset_manifest: dict | None = None,
 ) -> dict:
     """Run fresh policy versions in one process, preserving partial evidence."""
     if output_dir.exists():
@@ -69,6 +72,7 @@ def run_cycles(
     output_dir.mkdir(parents=True)
     _write_json(
         output_dir / "dataset-split.json",
+        dataset_manifest if dataset_manifest is not None else
         build_manifest(split, config["data"], config["prompt"]["system"]),
     )
     run = config["run"]
@@ -79,6 +83,7 @@ def run_cycles(
     ordered = order_training_problems(split.training, run["order"])
     update_epochs = config["algorithm"].get("update_epochs", 1)
     selected_ids: set[str] = set()
+    scanned_ids: set[str] = set()
     steps: list[dict] = []
     status = "completed"
     selected = None
@@ -90,7 +95,11 @@ def run_cycles(
         step_dir = output_dir / "steps" / after_version
         update_epoch = index % update_epochs + 1
         if update_epoch == 1:
-            candidates = tuple(item for item in ordered if item.prompt_id not in selected_ids)
+            candidates = tuple(
+                item for item in ordered
+                if item.prompt_id not in selected_ids
+                and (not run.get("skip_scanned_prompts", False) or item.prompt_id not in scanned_ids)
+            )
             if not candidates:
                 status = "incomplete_no_mixed_group"
                 break
@@ -103,6 +112,11 @@ def run_cycles(
             )
             if not scan.attempts:
                 raise RuntimeError("scan returned no attempts")
+            candidate_ids = {item.prompt_id for item in candidates}
+            attempt_ids = [item["prompt_id"] for item in scan.attempts]
+            if len(set(attempt_ids)) != len(attempt_ids) or not set(attempt_ids) <= candidate_ids:
+                raise ValueError("scan attempts must have distinct candidate prompt IDs")
+            scanned_ids.update(attempt_ids)
             reasons: Counter[str] = Counter()
             for attempt in scan.attempts:
                 reasons.update(attempt["reason_counts"])
@@ -193,6 +207,7 @@ def run_cycles(
         "source_sha256": split.source_sha256,
         "training_count": len(split.training),
         "validation_count": len(split.validation),
+        "unique_scanned_prompt_count": len(scanned_ids),
         "initial_model_revision": config["model"]["revision"],
         "torch_version": torch.__version__,
         "transformers_version": transformers.__version__,

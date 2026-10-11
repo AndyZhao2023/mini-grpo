@@ -1,0 +1,39 @@
+{
+  "policy_version": "step-000002",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "config_sha256": "ac53217a2def5a178620108ff1a740ef77df08d9557bf78d4df6b6e375e850c2",
+  "order": "shortest",
+  "max_prompts": 64,
+  "scanned_prompts": 1,
+  "zero_std_group_fraction": 0.0,
+  "reason_counts": {
+    "correct_answer": 1,
+    "missing_final_answer": 2,
+    "invalid_final_answer": 1
+  },
+  "selected_prompt_id": "gsm8k/main/train/06609",
+  "attempts": [
+    {
+      "prompt_id": "gsm8k/main/train/06609",
+      "rewards": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason_counts": {
+        "correct_answer": 1,
+        "missing_final_answer": 2,
+        "invalid_final_answer": 1
+      },
+      "response_lengths": [
+        167,
+        103,
+        40,
+        30
+      ],
+      "truncation_count": 0,
+      "zero_variance": false
+    }
+  ]
+}

@@ -1,0 +1,384 @@
+{
+  "status": "completed",
+  "requested_steps": 10,
+  "completed_steps": 10,
+  "update_epochs": 1,
+  "config_sha256": "ac53217a2def5a178620108ff1a740ef77df08d9557bf78d4df6b6e375e850c2",
+  "dataset_revision": "740312add88f781978c0658806c59bc2815b9866",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "training_count": 640,
+  "validation_count": 200,
+  "unique_scanned_prompt_count": 30,
+  "initial_model_revision": "results/m0/end-to-end-v2/checkpoints/step-000002",
+  "torch_version": "2.14.0",
+  "transformers_version": "4.57.6",
+  "generation_use_model_defaults": false,
+  "baseline": {
+    "question_count": 200,
+    "correct_count": 2,
+    "accuracy": 0.01,
+    "reason_counts": {
+      "missing_final_answer": 182,
+      "incorrect_answer": 11,
+      "correct_answer": 2,
+      "invalid_final_answer": 5
+    },
+    "truncation_count": 63,
+    "mean_response_tokens": 73.52
+  },
+  "final": {
+    "question_count": 200,
+    "correct_count": 12,
+    "accuracy": 0.06,
+    "reason_counts": {
+      "missing_final_answer": 137,
+      "incorrect_answer": 43,
+      "invalid_final_answer": 8,
+      "correct_answer": 12
+    },
+    "truncation_count": 59,
+    "mean_response_tokens": 75.105
+  },
+  "steps": [
+    {
+      "policy_before": "step-000000",
+      "policy_after": "step-000001",
+      "rollout_policy_version": "step-000000",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000001",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/06019",
+      "reward_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "advantage_vector": [
+        -0.5773502558562927,
+        -0.5773502558562927,
+        1.7320507675688783,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 1.4901161193847656e-08,
+        "post_loss": -0.019231021404266357,
+        "pre_max_ratio_deviation": 0.00010538101196289062,
+        "post_max_ratio_deviation": 0.6736714839935303,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.02118644118309021,
+        "post_approx_kl_old": 0.003232477232813835,
+        "gradient_norm_before_clip": 40.014373779296875,
+        "valid_token_count": 236
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000001",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000001",
+      "policy_after": "step-000002",
+      "rollout_policy_version": "step-000001",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000002",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/06583",
+      "reward_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "advantage_vector": [
+        -0.5773502558562927,
+        -0.5773502558562927,
+        -0.5773502558562927,
+        1.7320507675688783
+      ],
+      "metrics": {
+        "pre_loss": -5.960464477539062e-07,
+        "post_loss": -0.007731229066848755,
+        "pre_max_ratio_deviation": 3.814697265625e-05,
+        "post_max_ratio_deviation": 2.186291217803955,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.00917431153357029,
+        "post_approx_kl_old": 0.009973515756428242,
+        "gradient_norm_before_clip": 53.889259338378906,
+        "valid_token_count": 109
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000002",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000002",
+      "policy_after": "step-000003",
+      "rollout_policy_version": "step-000002",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000003",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/06609",
+      "reward_vector": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "advantage_vector": [
+        1.7320507675688783,
+        -0.5773502558562927,
+        -0.5773502558562927,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 5.364418029785156e-07,
+        "post_loss": -0.007050856947898865,
+        "pre_max_ratio_deviation": 5.626678466796875e-05,
+        "post_max_ratio_deviation": 0.3457872271537781,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.008823529817163944,
+        "post_approx_kl_old": 0.0006227343110367656,
+        "gradient_norm_before_clip": 23.756113052368164,
+        "valid_token_count": 340
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000003",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000003",
+      "policy_after": "step-000004",
+      "rollout_policy_version": "step-000003",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000004",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/06646",
+      "reward_vector": [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "advantage_vector": [
+        -0.5773502558562927,
+        1.7320507675688783,
+        -0.5773502558562927,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 4.917383193969727e-07,
+        "post_loss": -0.006814777851104736,
+        "pre_max_ratio_deviation": 6.0558319091796875e-05,
+        "post_max_ratio_deviation": 0.1629941463470459,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.0,
+        "post_approx_kl_old": 0.00046735091018490493,
+        "gradient_norm_before_clip": 24.70463752746582,
+        "valid_token_count": 128
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000004",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000004",
+      "policy_after": "step-000005",
+      "rollout_policy_version": "step-000004",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000005",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/01262",
+      "reward_vector": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "advantage_vector": [
+        1.7320507675688783,
+        -0.5773502558562927,
+        -0.5773502558562927,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 6.258487701416016e-07,
+        "post_loss": -0.006055667996406555,
+        "pre_max_ratio_deviation": 5.501508712768555e-05,
+        "post_max_ratio_deviation": 0.4308236837387085,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.006269592326134443,
+        "post_approx_kl_old": 0.00047593514318577945,
+        "gradient_norm_before_clip": 28.42426109313965,
+        "valid_token_count": 319
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000005",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000005",
+      "policy_after": "step-000006",
+      "rollout_policy_version": "step-000005",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000006",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/01814",
+      "reward_vector": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "advantage_vector": [
+        -0.5773502558562927,
+        -0.5773502558562927,
+        -0.5773502558562927,
+        1.7320507675688783
+      ],
+      "metrics": {
+        "pre_loss": -3.2782554626464844e-07,
+        "post_loss": -0.003071337938308716,
+        "pre_max_ratio_deviation": 5.638599395751953e-05,
+        "post_max_ratio_deviation": 0.2736029028892517,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.001792114693671465,
+        "post_approx_kl_old": 0.0001060799477272667,
+        "gradient_norm_before_clip": 17.815935134887695,
+        "valid_token_count": 558
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000006",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000006",
+      "policy_after": "step-000007",
+      "rollout_policy_version": "step-000006",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000007",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/01862",
+      "reward_vector": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "advantage_vector": [
+        1.7320507675688783,
+        -0.5773502558562927,
+        -0.5773502558562927,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 7.450580596923828e-07,
+        "post_loss": -0.00400136411190033,
+        "pre_max_ratio_deviation": 5.2034854888916016e-05,
+        "post_max_ratio_deviation": 0.334936261177063,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.0034129691775888205,
+        "post_approx_kl_old": 0.00017858404316939414,
+        "gradient_norm_before_clip": 33.71798324584961,
+        "valid_token_count": 293
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000007",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000007",
+      "policy_after": "step-000008",
+      "rollout_policy_version": "step-000007",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000008",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/01881",
+      "reward_vector": [
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "advantage_vector": [
+        -0.9999999800000003,
+        0.9999999800000003,
+        -0.9999999800000003,
+        0.9999999800000003
+      ],
+      "metrics": {
+        "pre_loss": 8.195638656616211e-07,
+        "post_loss": -0.009106799960136414,
+        "pre_max_ratio_deviation": 6.377696990966797e-05,
+        "post_max_ratio_deviation": 0.6670324802398682,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.017094017937779427,
+        "post_approx_kl_old": 0.002661332953721285,
+        "gradient_norm_before_clip": 66.4744873046875,
+        "valid_token_count": 117
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000008",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000008",
+      "policy_after": "step-000009",
+      "rollout_policy_version": "step-000008",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000009",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/01947",
+      "reward_vector": [
+        1.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "advantage_vector": [
+        0.9999999800000003,
+        -0.9999999800000003,
+        0.9999999800000003,
+        -0.9999999800000003
+      ],
+      "metrics": {
+        "pre_loss": 6.407499313354492e-07,
+        "post_loss": -0.0031398236751556396,
+        "pre_max_ratio_deviation": 3.62396240234375e-05,
+        "post_max_ratio_deviation": 0.08329141139984131,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.0,
+        "post_approx_kl_old": 5.799055361421779e-05,
+        "gradient_norm_before_clip": 23.555252075195312,
+        "valid_token_count": 328
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000009",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000009",
+      "policy_after": "step-000010",
+      "rollout_policy_version": "step-000009",
+      "rollout_artifact_dir": "results/m3/warm-start-v1/steps/step-000010",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/02803",
+      "reward_vector": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "advantage_vector": [
+        1.7320507675688783,
+        -0.5773502558562927,
+        -0.5773502558562927,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 2.16066837310791e-06,
+        "post_loss": -0.029642239212989807,
+        "pre_max_ratio_deviation": 3.409385681152344e-05,
+        "post_max_ratio_deviation": 0.14467430114746094,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.0,
+        "post_approx_kl_old": 0.000106402876554057,
+        "gradient_norm_before_clip": 181.55270385742188,
+        "valid_token_count": 218
+      },
+      "checkpoint_dir": "results/m3/warm-start-v1/checkpoints/step-000010",
+      "optimizer_state_saved": false
+    }
+  ]
+}

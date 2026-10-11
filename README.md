@@ -4,7 +4,7 @@ This repository builds a small, inspectable GRPO training loop for **single-turn
 
 ## Current state
 
-The repository now has a pinned data and trajectory contract, a strict outcome verifier, group-relative advantages, a masked clipped GRPO loss, and a two-update end-to-end runner with fixed internal validation. The original Day 1 backward pass used generated-token negative log likelihood **only to check the model gradient path**; the later smoke step below is the first actual GRPO update. The completed two-update run did not improve strict validation accuracy.
+The repository now has a pinned data and trajectory contract, a strict outcome verifier, group-relative advantages, a masked clipped GRPO loss, and an end-to-end runner with fixed internal validation. The original Day 1 backward pass used generated-token negative log likelihood **only to check the model gradient path**; the later smoke step below is the first actual GRPO update. The initial two-update run did not improve its strict validation accuracy. A separate 10-update warm-start experiment from its saved weights improved strict accuracy on a new held-out sample; see M3 below for the limits of that result.
 
 The chosen baseline is [Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct) on Apple Silicon MPS in float32. The model, tokenizer, and [GSM8K](https://huggingface.co/datasets/openai/gsm8k) revisions are pinned in [`configs/m0.yaml`](configs/m0.yaml). Local hardware checked on 2026-09-25: Apple M5 Pro, 64 GB unified memory. Full-parameter training is the initial resource assumption; the Day 1 smoke checks only generation and backward feasibility at a short sequence length.
 
@@ -126,6 +126,16 @@ A [fixed-checkpoint prompt experiment](docs/m1-prompt-two-step-v1.md) replaced t
 The [paired error analysis](docs/m1-prompt-error-analysis-v1.md) rechecks all 200 reserved pairs, records a clearly labeled last-number proxy for every answer, and manually annotates the failed response in every strict-correct flip. Among 10 newly correct versus 12 lost correct, correct-number/invalid-format cases balance at 4 versus 4; the remaining flips involve wrong answer values (5 versus 6) and unresolved truncation (1 versus 2). This explains the net -2 strict count without claiming the mathematical accuracy of the other 178 pairs. Recompute from the saved JSONL and pinned GSM8K train answers with `HF_HUB_OFFLINE=1 .venv/bin/python -m scripts.analyze_m1_prompt_errors --output-dir results/m1/my-prompt-error-audit`.
 
 The next [fixed-budget sampling comparison](docs/m2-sampling-order-v1.md) held the M0 final checkpoint, original prompt, sampling, and strict reward fixed while testing 64 fresh training questions per selection rule. Shortest-first found **11/64 mixed-reward groups**; a disjoint SHA-ranked random selection found **2/64**. These are rollout signal counts, not training updates or held-out gains. The [spec](configs/m2-sampling-order-v1.yaml), [manifest](results/m2/sampling-order-v1/manifest.json), [per-group JSONL](results/m2/sampling-order-v1/shortest.jsonl), and [summary](results/m2/sampling-order-v1/summary.json) are saved. The locally retained M0 checkpoint and MPS are required to repeat sampling.
+
+## M3 warm-start training
+
+The [M3 experiment](docs/m3-warm-start-v1.md) loaded the retained M0 final weights and initialized a new AdamW because M0 did not save optimizer state. It excluded all earlier M0/M1/M2 train-question IDs, fixed 640 shortest unused training candidates and a disjoint 200-question held-out sample, then completed **10/10** fresh rollout/update steps. The new held-out strict count changed from **2/200 to 12/200** (10 newly correct, none lost); all 10 gains were previously normally terminated responses without a valid final answer line. This is evidence for the fixed sample's strict score, not a clean measure of arithmetic reasoning or an official-test improvement. M2's 11/64 rollouts were not reused as training data. The 10 locally retained checkpoints are Git-ignored; only the final checkpoint's [SHA-256 list](results/m3/warm-start-v1/checkpoint-sha256.txt) is public.
+
+```bash
+HF_HUB_OFFLINE=1 .venv/bin/python -m scripts.run_warm_start --config configs/m3-warm-start-v1.yaml --output-dir results/m3/my-new-run
+```
+
+This requires the retained M0 checkpoint, pinned local model/data cache, and MPS. A new run may have different weight hashes.
 
 ## Final report and official test
 
