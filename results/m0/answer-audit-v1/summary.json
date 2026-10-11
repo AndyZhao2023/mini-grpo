@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "model_updated": false,
+  "source_split": "train",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "input_sha256": {
+    "manifest": "e6ced4a3f7cd86321d505c782bf4d48926aae9683c38c7a27f1f6f29b139d826",
+    "responses": "08c2841667c244502376f7d4178ea1dc5cc4ab61df28f6a728ba2d9b1e99820a",
+    "annotations": "8bb92152644047883049afb1c217b6ce5f45f50e509d1ce146d852870d64ddd1"
+  },
+  "source_question_count": 100,
+  "strict_correct_count": 6,
+  "completed_missing_final_count": 51,
+  "truncated_missing_final_count": 32,
+  "extraction_kind_counts": {
+    "nonterminal": 5,
+    "terminal": 42,
+    "unresolved": 4
+  },
+  "comparison_counts": {
+    "different_from_reference": 32,
+    "matches_reference": 15,
+    "unresolved": 4
+  },
+  "terminal_match_count": 12
+}

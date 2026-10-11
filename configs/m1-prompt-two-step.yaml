@@ -1,0 +1,28 @@
+experiment: m1-prompt-two-step-v1
+run_config: configs/m0-run.yaml
+run_dir: results/m0/end-to-end-v2
+checkpoint_dir: results/m0/end-to-end-v2/checkpoints/step-000002
+checkpoint_sha256_file: results/m0/end-to-end-v2/checkpoint-sha256.txt
+prior_diagnostic_manifest: results/m0/failure-diagnostic-v1/manifest.json
+prior_scan_files:
+  - results/m0/train-smoke-scan.json
+  - results/m0/shortest-v1/train-smoke-scan.json
+  - results/m0/format-v2/train-smoke-scan.json
+  - results/m0/direct-answer/train-smoke-scan.json
+  - results/m0/format-example/train-smoke-scan.json
+  - results/m0/end-to-end-v2/steps/step-000001/scan.json
+  - results/m0/end-to-end-v2/steps/step-000002/scan.json
+  - results/m0/end-to-end-mu2-v1/steps/step-000001/scan.json
+selection:
+  salt: m1-prompt-two-step-v1
+  development_count: 100
+  reserved_count: 200
+variant:
+  name: two-step-example
+  system: |
+    Solve the user's math problem with short calculations. End with one line containing #### and the numeric answer.
+    Example:
+    Question: A shop has 3 boxes with 4 apples each and sells 5 apples. How many apples remain?
+    Solution: 3 * 4 = 12. 12 - 5 = 7.
+    #### 7
+    Use the same final-line format for the user's question.

@@ -1,0 +1,65 @@
+{
+  "status": "completed",
+  "model_updated": false,
+  "source_split": "train",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "scope": "all pairs: strict verifier and finish reason; flips: manual answer-value annotation",
+  "input_sha256": {
+    "manifest": "76b6daa7d1a04a8d7a00d3cc31d81f7f4e1772f0d5b7e478a99c0e58b6b782b6",
+    "experiment_summary": "0de679dfbffcabbc7cd8f4dd0966df3cc18ad6687438507453d42e2171eb38da",
+    "baseline": "7d7cbf4a9e63c3932e3b920d84070e22d5ec582ef694b19cdc4637a2bbce6fbd",
+    "two_step_example": "8f642caf46b0fb97c70cafe3e44b1c0c8a4254eec534ba9337088719442a8cf1",
+    "annotations": "6cc18164718c46cdd34f33f67692d9f4b2eaba7e83415287a53795b16498dfe5"
+  },
+  "question_count": 200,
+  "strict_change_counts": {
+    "correct_in_both": 1,
+    "incorrect_in_both": 177,
+    "lost_correct": 12,
+    "newly_correct": 10
+  },
+  "flip_failure_class_counts": {
+    "newly_correct": {
+      "correct_value_wrong_format": 4,
+      "truncated_unresolved": 1,
+      "wrong_value": 5
+    },
+    "lost_correct": {
+      "correct_value_wrong_format": 4,
+      "truncated_unresolved": 2,
+      "wrong_value": 6
+    }
+  },
+  "baseline": {
+    "question_count": 200,
+    "strict_correct_count": 13,
+    "strict_pass_at_1": 0.065,
+    "reward_reason_counts": {
+      "correct_answer": 13,
+      "incorrect_answer": 11,
+      "invalid_final_answer": 2,
+      "missing_final_answer": 174
+    },
+    "truncated_count": 58,
+    "mean_response_tokens": 70.935
+  },
+  "two_step_example": {
+    "question_count": 200,
+    "strict_correct_count": 11,
+    "strict_pass_at_1": 0.055,
+    "reward_reason_counts": {
+      "correct_answer": 11,
+      "incorrect_answer": 33,
+      "invalid_final_answer": 2,
+      "missing_final_answer": 154
+    },
+    "truncated_count": 44,
+    "mean_response_tokens": 69.33
+  },
+  "paired": {
+    "newly_strict_correct": 10,
+    "lost_strict_correct": 12,
+    "correct_in_both": 1,
+    "identical_response_text": 3
+  }
+}

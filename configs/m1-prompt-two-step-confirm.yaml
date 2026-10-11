@@ -1,0 +1,10 @@
+experiment: m1-prompt-two-step-confirm-v1
+source_spec: configs/m1-prompt-two-step.yaml
+development_dir: results/m1/prompt-two-step-v1
+selection_reason: >-
+  The two-step example scored 7/100 versus 3/100 on the preselected development
+  questions, with 7 new correct and 3 lost correct. Confirm this single variant
+  once on the already reserved 200 questions before making a quality claim.
+interpretation_gate: >-
+  Treat a higher raw strict-correct count without more truncations as a promising
+  prompt result, not proof of general improvement; report paired gains and losses.

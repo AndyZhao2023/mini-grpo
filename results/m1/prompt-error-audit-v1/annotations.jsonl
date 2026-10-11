@@ -1,0 +1,22 @@
+{"prompt_id":"gsm8k/main/train/03616","failed_arm":"two_step_example","failure_class":"correct_value_wrong_format","candidate":"6","evidence":"12 / 2 = 6. #### 6"}
+{"prompt_id":"gsm8k/main/train/04489","failed_arm":"two_step_example","failure_class":"wrong_value","candidate":"5","evidence":"$50 - $20 - $36 - $5 = $5."}
+{"prompt_id":"gsm8k/main/train/07310","failed_arm":"baseline","failure_class":"correct_value_wrong_format","candidate":"95","evidence":"7 x 12 + 11 = 95."}
+{"prompt_id":"gsm8k/main/train/05865","failed_arm":"two_step_example","failure_class":"wrong_value","candidate":"84","evidence":"200 - 80 - 56 = 84."}
+{"prompt_id":"gsm8k/main/train/01350","failed_arm":"two_step_example","failure_class":"wrong_value","candidate":"18","evidence":"#### $18"}
+{"prompt_id":"gsm8k/main/train/04759","failed_arm":"two_step_example","failure_class":"truncated_unresolved","candidate":null,"evidence":"New barbell cost = $250 + $75"}
+{"prompt_id":"gsm8k/main/train/03579","failed_arm":"baseline","failure_class":"wrong_value","candidate":"24","evidence":"24 cups of water in one week."}
+{"prompt_id":"gsm8k/main/train/04889","failed_arm":"two_step_example","failure_class":"correct_value_wrong_format","candidate":"20","evidence":"10 * 2 = 20."}
+{"prompt_id":"gsm8k/main/train/04619","failed_arm":"baseline","failure_class":"wrong_value","candidate":"32","evidence":"He is left with $32."}
+{"prompt_id":"gsm8k/main/train/05883","failed_arm":"baseline","failure_class":"truncated_unresolved","candidate":null,"evidence":"Remaining pennies: 200 - 30 = 170"}
+{"prompt_id":"gsm8k/main/train/07471","failed_arm":"two_step_example","failure_class":"correct_value_wrong_format","candidate":"308","evidence":"The total cost is $308."}
+{"prompt_id":"gsm8k/main/train/01572","failed_arm":"baseline","failure_class":"correct_value_wrong_format","candidate":"114","evidence":"6 + 8 + 100 = 114 sheets."}
+{"prompt_id":"gsm8k/main/train/01517","failed_arm":"baseline","failure_class":"correct_value_wrong_format","candidate":"5","evidence":"#### 5\nUse the same final-line format for the user's question."}
+{"prompt_id":"gsm8k/main/train/01886","failed_arm":"two_step_example","failure_class":"truncated_unresolved","candidate":null,"evidence":"108 /"}
+{"prompt_id":"gsm8k/main/train/01599","failed_arm":"baseline","failure_class":"wrong_value","candidate":"6","evidence":"$26 - $9 - $4 - $5 = $6."}
+{"prompt_id":"gsm8k/main/train/07167","failed_arm":"two_step_example","failure_class":"correct_value_wrong_format","candidate":"5","evidence":"7 - 2 = 5."}
+{"prompt_id":"gsm8k/main/train/02074","failed_arm":"baseline","failure_class":"wrong_value","candidate":"11","evidence":"12 * $5 - $10 - $15 = 11."}
+{"prompt_id":"gsm8k/main/train/05638","failed_arm":"baseline","failure_class":"wrong_value","candidate":"52","evidence":"7 * 5 + 8 * 2 = 52 hours."}
+{"prompt_id":"gsm8k/main/train/02092","failed_arm":"baseline","failure_class":"correct_value_wrong_format","candidate":"9","evidence":"3 + 2 * 3 = 9"}
+{"prompt_id":"gsm8k/main/train/03381","failed_arm":"two_step_example","failure_class":"wrong_value","candidate":"15","evidence":"#### 15"}
+{"prompt_id":"gsm8k/main/train/00800","failed_arm":"two_step_example","failure_class":"wrong_value","candidate":"4","evidence":"20 - 16 = $4."}
+{"prompt_id":"gsm8k/main/train/02425","failed_arm":"two_step_example","failure_class":"wrong_value","candidate":"32","evidence":"#### 32"}

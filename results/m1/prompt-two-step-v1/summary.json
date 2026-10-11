@@ -1,0 +1,37 @@
+{
+  "status": "completed",
+  "model_updated": false,
+  "torch_version": "2.14.0",
+  "transformers_version": "4.57.6",
+  "baseline": {
+    "question_count": 100,
+    "strict_correct_count": 3,
+    "strict_pass_at_1": 0.03,
+    "reward_reason_counts": {
+      "correct_answer": 3,
+      "incorrect_answer": 13,
+      "missing_final_answer": 84
+    },
+    "truncated_count": 29,
+    "mean_response_tokens": 70.87
+  },
+  "two_step_example": {
+    "question_count": 100,
+    "strict_correct_count": 7,
+    "strict_pass_at_1": 0.07,
+    "reward_reason_counts": {
+      "correct_answer": 7,
+      "incorrect_answer": 16,
+      "invalid_final_answer": 1,
+      "missing_final_answer": 76
+    },
+    "truncated_count": 17,
+    "mean_response_tokens": 71.06
+  },
+  "paired": {
+    "newly_strict_correct": 7,
+    "lost_strict_correct": 3,
+    "correct_in_both": 0,
+    "identical_response_text": 1
+  }
+}

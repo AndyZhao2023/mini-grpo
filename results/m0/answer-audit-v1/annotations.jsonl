@@ -1,0 +1,51 @@
+{"prompt_id":"gsm8k/main/train/03430","kind":"terminal","candidate":"520","evidence":"= 520"}
+{"prompt_id":"gsm8k/main/train/00919","kind":"terminal","candidate":"1250","evidence":"= 1250"}
+{"prompt_id":"gsm8k/main/train/01545","kind":"terminal","candidate":"60","evidence":"= $60"}
+{"prompt_id":"gsm8k/main/train/06046","kind":"terminal","candidate":"832","evidence":"Ellen has 832 calories left for dinner."}
+{"prompt_id":"gsm8k/main/train/06904","kind":"terminal","candidate":"1685","evidence":"= 1685 stairs together."}
+{"prompt_id":"gsm8k/main/train/04017","kind":"terminal","candidate":"120","evidence":"= $120"}
+{"prompt_id":"gsm8k/main/train/01175","kind":"nonterminal","candidate":"30","evidence":"The jeans cost $15 x 2 = $30."}
+{"prompt_id":"gsm8k/main/train/06466","kind":"terminal","candidate":"2490","evidence":"= 2490€."}
+{"prompt_id":"gsm8k/main/train/07223","kind":"unresolved","candidate":null,"evidence":"$#### and he has $#### left."}
+{"prompt_id":"gsm8k/main/train/06963","kind":"terminal","candidate":"25","evidence":"The saleswoman returns 25€ to Leila."}
+{"prompt_id":"gsm8k/main/train/01167","kind":"terminal","candidate":"30","evidence":"= $30."}
+{"prompt_id":"gsm8k/main/train/04635","kind":"nonterminal","candidate":"15","evidence":"#### 15"}
+{"prompt_id":"gsm8k/main/train/07141","kind":"terminal","candidate":"75","evidence":"75 minutes longer"}
+{"prompt_id":"gsm8k/main/train/00302","kind":"terminal","candidate":"21","evidence":"= 21 square feet"}
+{"prompt_id":"gsm8k/main/train/05490","kind":"terminal","candidate":"4","evidence":"= 4 toys."}
+{"prompt_id":"gsm8k/main/train/01763","kind":"terminal","candidate":"21","evidence":"= 21 minutes."}
+{"prompt_id":"gsm8k/main/train/03653","kind":"terminal","candidate":"15","evidence":"She gave 15 decorations."}
+{"prompt_id":"gsm8k/main/train/05488","kind":"terminal","candidate":"64851.4","evidence":"= 64,851.4"}
+{"prompt_id":"gsm8k/main/train/01834","kind":"terminal","candidate":"67.5","evidence":"$<<45+22.5=67.5>>67.5 on lodging."}
+{"prompt_id":"gsm8k/main/train/05365","kind":"terminal","candidate":"1.5","evidence":"It takes 1.5 hives"}
+{"prompt_id":"gsm8k/main/train/01678","kind":"unresolved","candidate":null,"evidence":"The answer is -18. Jackie needs to spend $18 more"}
+{"prompt_id":"gsm8k/main/train/05769","kind":"nonterminal","candidate":"1","evidence":"#### 1"}
+{"prompt_id":"gsm8k/main/train/05380","kind":"terminal","candidate":"7","evidence":"21 / 3 = 7"}
+{"prompt_id":"gsm8k/main/train/06806","kind":"terminal","candidate":"20","evidence":"Therefore, the answer is 20."}
+{"prompt_id":"gsm8k/main/train/03367","kind":"terminal","candidate":"1500","evidence":"= $1500."}
+{"prompt_id":"gsm8k/main/train/04988","kind":"terminal","candidate":"30","evidence":"she owes $20 + $10 = $30."}
+{"prompt_id":"gsm8k/main/train/04425","kind":"terminal","candidate":"146","evidence":"She spends $146.00 on sparkling water every year."}
+{"prompt_id":"gsm8k/main/train/00279","kind":"terminal","candidate":"30","evidence":"Total savings after 6 months: $2 + $4 + $8 + $14 = $30"}
+{"prompt_id":"gsm8k/main/train/01658","kind":"terminal","candidate":"19200","evidence":"= 19200 blueberries."}
+{"prompt_id":"gsm8k/main/train/06342","kind":"terminal","candidate":"700","evidence":"= 700 customers."}
+{"prompt_id":"gsm8k/main/train/02805","kind":"terminal","candidate":"9","evidence":"6 + 3 = 9"}
+{"prompt_id":"gsm8k/main/train/06866","kind":"terminal","candidate":"24","evidence":"= 24."}
+{"prompt_id":"gsm8k/main/train/02203","kind":"terminal","candidate":"13","evidence":"= 13 eggs."}
+{"prompt_id":"gsm8k/main/train/05140","kind":"terminal","candidate":"23.2","evidence":"= 23.2 students."}
+{"prompt_id":"gsm8k/main/train/06376","kind":"terminal","candidate":"600000","evidence":"= $600,000."}
+{"prompt_id":"gsm8k/main/train/06811","kind":"terminal","candidate":"6","evidence":"= 6 orange marbles."}
+{"prompt_id":"gsm8k/main/train/02942","kind":"terminal","candidate":"9000","evidence":"He financed the tractor for $9000.00."}
+{"prompt_id":"gsm8k/main/train/05307","kind":"terminal","candidate":"12","evidence":"So a spider has 12 legs."}
+{"prompt_id":"gsm8k/main/train/01228","kind":"terminal","candidate":"60","evidence":"= 60 days."}
+{"prompt_id":"gsm8k/main/train/03366","kind":"terminal","candidate":"-1","evidence":"The difference in the amount of money they make in dollars is -1."}
+{"prompt_id":"gsm8k/main/train/02143","kind":"terminal","candidate":"56","evidence":"= 56."}
+{"prompt_id":"gsm8k/main/train/05339","kind":"terminal","candidate":"15","evidence":"lowest price she can pay for the 16 oz of butter she needs is $15."}
+{"prompt_id":"gsm8k/main/train/05570","kind":"terminal","candidate":"120","evidence":"= $120."}
+{"prompt_id":"gsm8k/main/train/06083","kind":"terminal","candidate":"1","evidence":"1"}
+{"prompt_id":"gsm8k/main/train/05286","kind":"nonterminal","candidate":"33","evidence":"#### 33"}
+{"prompt_id":"gsm8k/main/train/05592","kind":"unresolved","candidate":null,"evidence":"divide the total cost by the number of packs."}
+{"prompt_id":"gsm8k/main/train/06025","kind":"terminal","candidate":"14","evidence":"= 14 friends."}
+{"prompt_id":"gsm8k/main/train/04354","kind":"terminal","candidate":"94.5","evidence":"= 94.5 marshmallows."}
+{"prompt_id":"gsm8k/main/train/03206","kind":"terminal","candidate":"1350000","evidence":"= $1,350,000."}
+{"prompt_id":"gsm8k/main/train/06180","kind":"nonterminal","candidate":"17","evidence":"#### 17"}
+{"prompt_id":"gsm8k/main/train/05122","kind":"unresolved","candidate":null,"evidence":"13333.333333333334 < 4000"}
