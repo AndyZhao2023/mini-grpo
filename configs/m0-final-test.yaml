@@ -1,0 +1,11 @@
+experiment: m0-final-official-test-v1
+run_config: configs/m0-run.yaml
+run_dir: results/m0/end-to-end-v2
+checkpoint_dir: results/m0/end-to-end-v2/checkpoints/step-000002
+checkpoint_sha256_file: results/m0/end-to-end-v2/checkpoint-sha256.txt
+expected_test_size: 1319
+expected_test_parquet_sha256: ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59
+selection_reason: >-
+  Select the completed two-fresh-rollout trained policy using fixed internal
+  validation: 9/200, versus 8/200 for the same-rollout mu=2 policy. The
+  official test was not used for candidate selection.

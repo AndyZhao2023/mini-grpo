@@ -8,7 +8,10 @@ from unittest.mock import patch
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from src.data.dataset import build_manifest, build_prompt_messages, load_pinned_train, split_train_rows
+from src.data.dataset import (
+    build_manifest, build_prompt_messages, load_pinned_test, load_pinned_train,
+    split_train_rows,
+)
 
 
 def fixture_rows(count: int = 10) -> list[dict[str, str]]:
@@ -30,6 +33,26 @@ DATA_CONFIG = {
 
 
 class DatasetTests(unittest.TestCase):
+    def test_official_test_loader_checks_pinned_parquet_and_keeps_answers_separate(self) -> None:
+        import hashlib
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "test.parquet"
+            pq.write_table(pa.Table.from_pylist(fixture_rows(2)), path)
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+            with patch("huggingface_hub.try_to_load_from_cache", return_value=str(path)):
+                problems = load_pinned_test(DATA_CONFIG, expected_size=2,
+                                            expected_parquet_sha256=digest)
+                self.assertEqual([row.prompt_id for row in problems],
+                                 ["gsm8k/main/test/00000", "gsm8k/main/test/00001"])
+                self.assertNotIn("PRIVATE_WORK", str(build_prompt_messages(problems[0], "Solve")))
+                with self.assertRaisesRegex(ValueError, "SHA-256"):
+                    load_pinned_test(DATA_CONFIG, expected_size=2,
+                                     expected_parquet_sha256="0" * 64)
+                with self.assertRaisesRegex(ValueError, "row count"):
+                    load_pinned_test(DATA_CONFIG, expected_size=3,
+                                     expected_parquet_sha256=digest)
+
     def test_fixed_disjoint_split_keeps_original_row_ids(self) -> None:
         first = split_train_rows(fixture_rows(), validation_size=3, seed=42)
         second = split_train_rows(fixture_rows(), validation_size=3, seed=42)

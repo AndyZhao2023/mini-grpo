@@ -1,0 +1,20 @@
+{
+  "source_split": "test",
+  "dataset_id": "openai/gsm8k",
+  "dataset_revision": "740312add88f781978c0658806c59bc2815b9866",
+  "test_parquet_sha256": "ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59",
+  "question_count": 1319,
+  "run_config_sha256": "c05cdcf5b855fc5202e95821bbb3af3090f3ead4b233a3107dc8012c10523094",
+  "source_run_summary_sha256": "094b0ac4e34ba56a548d3f60a0d51d8e2ad58fbb1fa5e047c3cb4536dc654993",
+  "initial_model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "tokenizer_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "checkpoint_dir": "results/m0/end-to-end-v2/checkpoints/step-000002",
+  "checkpoint_policy_version": "step-000002",
+  "checkpoint_sha256_manifest_sha256": "8b72364f38a4f5382338d92a4739b3ccdaf7c7df6b425d93160c43115873ddf4",
+  "selection_reason": "Select the completed two-fresh-rollout trained policy using fixed internal validation: 9/200, versus 8/200 for the same-rollout mu=2 policy. The official test was not used for candidate selection.",
+  "evaluation": {
+    "do_sample": false,
+    "max_new_tokens": 128,
+    "run_official_test_once": true
+  }
+}

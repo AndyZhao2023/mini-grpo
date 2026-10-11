@@ -6,6 +6,7 @@ import hashlib
 import json
 import re
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Mapping, Sequence
 
 
@@ -114,6 +115,50 @@ def load_pinned_train(data_config: Mapping[str, object]) -> TrainValidationSplit
             f"got {split.source_sha256}"
         )
     return split
+
+
+def load_pinned_test(
+    data_config: Mapping[str, object], *, expected_size: int,
+    expected_parquet_sha256: str,
+) -> tuple[MathProblem, ...]:
+    """Read the exact cached official test parquet after checking its bytes."""
+    revision = data_config["revision"]
+    if not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision):
+        raise ValueError("data.revision must be a full 40-character commit SHA")
+    if data_config["id"] != "openai/gsm8k" or data_config["name"] != "main":
+        raise ValueError("this loader requires openai/gsm8k main")
+    if type(expected_size) is not int or expected_size < 1:
+        raise ValueError("expected test row count must be positive")
+    if not isinstance(expected_parquet_sha256, str) or not re.fullmatch(
+        r"[0-9a-f]{64}", expected_parquet_sha256,
+    ):
+        raise ValueError("expected test parquet SHA-256 must have 64 lowercase hex digits")
+
+    from huggingface_hub import try_to_load_from_cache
+    cached = try_to_load_from_cache(
+        data_config["id"], "main/test-00000-of-00001.parquet",
+        revision=revision, repo_type="dataset",
+    )
+    if not isinstance(cached, str):
+        raise FileNotFoundError("pinned GSM8K official test parquet is not cached")
+    path = Path(cached)
+    actual_sha256 = hashlib.sha256(path.read_bytes()).hexdigest()
+    if actual_sha256 != expected_parquet_sha256:
+        raise ValueError("official test parquet SHA-256 differs from the pinned file")
+
+    import pyarrow.parquet as parquet
+    rows = parquet.read_table(path, columns=["question", "answer"]).to_pylist()
+    if len(rows) != expected_size:
+        raise ValueError(f"official test row count differs: expected {expected_size}, got {len(rows)}")
+    problems: list[MathProblem] = []
+    for index, row in enumerate(rows):
+        question, answer = row.get("question"), row.get("answer")
+        if not isinstance(question, str) or not question.strip():
+            raise ValueError(f"official test row {index} has no question")
+        if not isinstance(answer, str) or not answer.strip():
+            raise ValueError(f"official test row {index} has no answer")
+        problems.append(MathProblem(f"gsm8k/main/test/{index:05d}", question, answer))
+    return tuple(problems)
 
 
 def build_manifest(

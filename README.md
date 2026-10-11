@@ -117,6 +117,10 @@ The [read-only diagnostic](docs/m0-failure-diagnostic-v1.md) uses the retained f
 
 The recorded [summary](results/m0/failure-diagnostic-v1/summary.json) has **6/100 strict correct**, 83 missing final-answer lines, 10 valid-but-incorrect final answers, one invalid final answer, and 33 length-limited responses at 128 tokens. These reason and length counts overlap. None of the 33 length-limited responses became strictly correct with 256 tokens; 18 still hit the longer cap. All 33 decoded short responses were prefixes of their longer counterparts. Increasing the cap alone did not recover an answer in this sample. Completed responses without `####` can contain either correct or incorrect arithmetic, so their mathematical accuracy remains unmeasured by this strict diagnostic. The [manifest](results/m0/failure-diagnostic-v1/manifest.json) and both JSONL files retain the selected IDs and per-question evidence.
 
+## Final report and official test
+
+The [M0 final report](docs/m0-final-report.md) connects the implementation contract, both two-update schedules, fixed validation, failure analysis, raw evidence, and limits. Before opening the official GSM8K test split, it selected the two-fresh-rollout final checkpoint on internal validation (9/200 versus 8/200 for same-rollout `mu=2`). One greedy, strict-verifier evaluation of that trained checkpoint scored **40/1,319 (3.03%)** on the official test. [Per-question rows](results/m0/official-test-v1/test-rows.jsonl), [summary](results/m0/official-test-v1/summary.json), [pinned test specification](configs/m0-final-test.yaml), and [selection/checkpoint manifest](results/m0/official-test-v1/manifest.json) are public. The initial model was not run on the official test, so this result is not a test-set estimate of training improvement. Checkpoint weights remain local; the report distinguishes exact artifact verification from rerunning the procedure.
+
 ## M0 acceptance contract
 
 - Persist complete groups of four trajectories with prompt and response token IDs, response masks, pre-update raw-logit `old_log_probs`, outcome rewards, advantages, and policy versions.

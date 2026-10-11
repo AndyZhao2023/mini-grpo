@@ -1,0 +1,17 @@
+{
+  "status": "completed",
+  "source_split": "test",
+  "metrics": {
+    "question_count": 1319,
+    "correct_count": 40,
+    "accuracy": 0.030326004548900682,
+    "reason_counts": {
+      "missing_final_answer": 1158,
+      "incorrect_answer": 114,
+      "correct_answer": 40,
+      "invalid_final_answer": 7
+    },
+    "truncation_count": 412,
+    "mean_response_tokens": 72.26762699014405
+  }
+}
