@@ -1,6 +1,8 @@
 import unittest
 
-from scripts.analyze_m1_prompt_errors import analyze_pairs
+from decimal import Decimal
+
+from scripts.analyze_m1_prompt_errors import analyze_pairs, value_proxy
 from src.data.dataset import MathProblem
 
 
@@ -45,6 +47,7 @@ class PromptErrorAnalysisTests(unittest.TestCase):
             "newly_correct", "lost_correct", "incorrect_in_both",
         ])
         self.assertIsNone(paired[2]["failed_response_annotation"])
+        self.assertEqual(paired[0]["baseline_value_proxy"]["class"], "last_number_matches_reference")
         self.assertEqual(summary["flip_failure_class_counts"]["newly_correct"], {
             "correct_value_wrong_format": 1,
         })
@@ -67,6 +70,13 @@ class PromptErrorAnalysisTests(unittest.TestCase):
         changed[0]["failure_class"] = "wrong_value"
         with self.assertRaisesRegex(ValueError, "disagree with reference"):
             analyze_pairs(self.baseline, self.variant, changed, self.problems)
+        changed = [dict(item) for item in self.annotations]
+        changed[1]["candidate"] = "7"
+        changed[1]["evidence"] = "7"
+        variant = [dict(item) for item in self.variant]
+        variant[1]["response_text"] = "7\n#### 8"
+        with self.assertRaisesRegex(ValueError, "differs from the valid final"):
+            analyze_pairs(self.baseline, variant, changed, self.problems)
 
     def test_truncated_response_has_no_claimed_answer(self):
         baseline = [row("a", "5 +", 0.0, "missing_final_answer", "length")]
@@ -81,6 +91,18 @@ class PromptErrorAnalysisTests(unittest.TestCase):
         annotation[0]["candidate"] = "5"
         with self.assertRaisesRegex(ValueError, "must have no candidate"):
             analyze_pairs(baseline, variant, annotation, self.problems)
+
+    def test_last_number_is_only_a_proxy_and_length_abstains(self):
+        self.assertEqual(value_proxy(
+            row("a", "5 is an intermediate value. Then 7.", 0.0, "missing_final_answer"),
+            Decimal("5"),
+        )["class"], "last_number_differs")
+        self.assertEqual(value_proxy(
+            row("a", "The answer is $5.", 0.0, "missing_final_answer"), Decimal("5"),
+        )["candidate"], "5")
+        self.assertEqual(value_proxy(
+            row("a", "5 +", 0.0, "missing_final_answer", "length"), Decimal("5"),
+        )["class"], "truncated_unresolved")
 
 
 if __name__ == "__main__":

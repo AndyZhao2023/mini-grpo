@@ -3,7 +3,7 @@
   "model_updated": false,
   "source_split": "train",
   "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
-  "scope": "all pairs: strict verifier and finish reason; flips: manual answer-value annotation",
+  "scope": "all pairs: strict verifier, finish reason, and mechanical last-number proxy; flips: manual answer-value annotation",
   "input_sha256": {
     "manifest": "76b6daa7d1a04a8d7a00d3cc31d81f7f4e1772f0d5b7e478a99c0e58b6b782b6",
     "experiment_summary": "0de679dfbffcabbc7cd8f4dd0966df3cc18ad6687438507453d42e2171eb38da",
@@ -28,6 +28,22 @@
       "correct_value_wrong_format": 4,
       "truncated_unresolved": 2,
       "wrong_value": 6
+    }
+  },
+  "answer_value_proxy_counts": {
+    "baseline": {
+      "last_number_differs": 92,
+      "last_number_matches_reference": 26,
+      "strict_correct": 13,
+      "strict_wrong_number": 11,
+      "truncated_unresolved": 58
+    },
+    "two_step_example": {
+      "last_number_differs": 77,
+      "last_number_matches_reference": 35,
+      "strict_correct": 11,
+      "strict_wrong_number": 33,
+      "truncated_unresolved": 44
     }
   },
   "baseline": {

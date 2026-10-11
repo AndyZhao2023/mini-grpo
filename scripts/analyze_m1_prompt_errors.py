@@ -28,6 +28,29 @@ _NUMBER = re.compile(r"(?<![\w.])-?\d[\d,]*(?:\.\d+)?(?!\w|\.\d)")
 _FAILURE_CLASSES = {"correct_value_wrong_format", "wrong_value", "truncated_unresolved"}
 
 
+def value_proxy(row: dict, reference: Decimal) -> dict:
+    """Classify a saved response; the last-number branch is only a proxy."""
+    if row["reward_reason"] == "correct_answer":
+        return {"class": "strict_correct", "candidate": str(reference), "evidence": None}
+    if row["reward_reason"] == "incorrect_answer":
+        candidate = parse_final_answer(row["response_text"])
+        if candidate is None:
+            raise ValueError("valid incorrect answer has no parsed final number")
+        return {"class": "strict_wrong_number", "candidate": str(candidate), "evidence": None}
+    if row["finish_reason"] == "length":
+        return {"class": "truncated_unresolved", "candidate": None, "evidence": None}
+    matches = list(_NUMBER.finditer(row["response_text"]))
+    if not matches:
+        return {"class": "no_numeric_literal", "candidate": None, "evidence": None}
+    match = matches[-1]
+    candidate = Decimal(match.group().replace(",", ""))
+    evidence = row["response_text"][max(0, match.start() - 50):min(len(row["response_text"]), match.end() + 50)]
+    return {
+        "class": "last_number_matches_reference" if candidate == reference else "last_number_differs",
+        "candidate": str(candidate), "evidence": evidence,
+    }
+
+
 def analyze_pairs(
     baseline: Sequence[dict], variant: Sequence[dict], annotations: Sequence[dict],
     problems: dict[str, MathProblem],
@@ -51,6 +74,7 @@ def analyze_pairs(
     paired = []
     changes = Counter()
     failure_classes = {"newly_correct": Counter(), "lost_correct": Counter()}
+    proxy_classes = {"baseline": Counter(), "two_step_example": Counter()}
     for a, b in zip(baseline, variant):
         prompt_id = a["prompt_id"]
         problem = problems[prompt_id]
@@ -69,6 +93,9 @@ def analyze_pairs(
             "correct_in_both" if a["reward"] == 1 else "incorrect_in_both"
         )
         changes[change] += 1
+        baseline_proxy, variant_proxy = value_proxy(a, reference), value_proxy(b, reference)
+        proxy_classes["baseline"][baseline_proxy["class"]] += 1
+        proxy_classes["two_step_example"][variant_proxy["class"]] += 1
         detail = None
         if prompt_id in flip_ids:
             detail = by_id[prompt_id]
@@ -97,6 +124,9 @@ def analyze_pairs(
                     raise ValueError(f"candidate and failure class disagree with reference: {prompt_id}")
                 if detail["failure_class"] == "correct_value_wrong_format" and failed["reward_reason"] == "incorrect_answer":
                     raise ValueError(f"valid final answer cannot be a format-only failure: {prompt_id}")
+                if (failed["reward_reason"] == "incorrect_answer"
+                        and Decimal(candidate) != parse_final_answer(failed["response_text"])):
+                    raise ValueError(f"candidate differs from the valid final answer: {prompt_id}")
             failure_classes[change][detail["failure_class"]] += 1
         paired.append({
             "prompt_id": prompt_id,
@@ -104,6 +134,8 @@ def analyze_pairs(
             "change": change,
             "baseline": {"reward_reason": a["reward_reason"], "finish_reason": a["finish_reason"]},
             "two_step_example": {"reward_reason": b["reward_reason"], "finish_reason": b["finish_reason"]},
+            "baseline_value_proxy": baseline_proxy,
+            "two_step_value_proxy": variant_proxy,
             "failed_response_annotation": detail,
         })
     return paired, {
@@ -111,6 +143,9 @@ def analyze_pairs(
         "strict_change_counts": dict(sorted(changes.items())),
         "flip_failure_class_counts": {
             arm: dict(sorted(counts.items())) for arm, counts in failure_classes.items()
+        },
+        "answer_value_proxy_counts": {
+            arm: dict(sorted(counts.items())) for arm, counts in proxy_classes.items()
         },
         "baseline": summarize(baseline),
         "two_step_example": summarize(variant),
@@ -144,7 +179,7 @@ def main(
     summary = {
         "status": "completed", "model_updated": False,
         "source_split": "train", "source_sha256": split.source_sha256,
-        "scope": "all pairs: strict verifier and finish reason; flips: manual answer-value annotation",
+        "scope": "all pairs: strict verifier, finish reason, and mechanical last-number proxy; flips: manual answer-value annotation",
         "input_sha256": {
             name: hashlib.sha256(path.read_bytes()).hexdigest()
             for name, path in (
