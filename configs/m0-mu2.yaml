@@ -1,0 +1,76 @@
+experiment: m0-same-rollout-mu2
+seed: 42
+
+model:
+  id: Qwen/Qwen2.5-0.5B-Instruct
+  revision: 7ae557604adf67be50417f59c2c2f167def9a775
+  tokenizer_revision: 7ae557604adf67be50417f59c2c2f167def9a775
+  dtype: float32
+  device: mps
+  training_method: full_finetune
+  dropout: 0.0
+
+data:
+  id: openai/gsm8k
+  name: main
+  revision: 740312add88f781978c0658806c59bc2815b9866
+  expected_train_size: 7473
+  expected_train_sha256: dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca
+  validation_size: 200
+  split_seed: 42
+  final_test_split: test
+
+prompt:
+  system: |
+    Solve the user's math problem with short calculations. End with one line containing #### and the numeric answer.
+    Example:
+    Question: What is 2 plus 3?
+    Solution: 2 + 3 = 5.
+    #### 5
+    Use the same final-line format for the user's question.
+  template: tokenizer_chat_template
+
+generation:
+  group_size: 4
+  do_sample: true
+  temperature: 1.0
+  top_p: 1.0
+  top_k: 0
+  repetition_penalty: 1.0
+  max_new_tokens: 256
+  eos: tokenizer_eos
+  extra_logits_processors: []
+
+algorithm:
+  update_epochs: 2
+  clip_epsilon: 0.2
+  beta: 0.0
+  advantage_std: population
+  advantage_epsilon: 1.0e-8
+  loss_reduction: response_then_group_then_batch
+
+optimizer:
+  name: AdamW
+  learning_rate: 1.0e-7
+  betas: [0.9, 0.999]
+  epsilon: 1.0e-8
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+
+evaluation:
+  do_sample: false
+  max_new_tokens: 128
+  run_official_test_once: true
+
+run:
+  update_steps: 2
+  max_prompts_per_step: 64
+  order: shortest
+  max_post_approx_kl_old: 0.05
+
+smoke:
+  prompt_count: 2
+  group_size: 4
+  max_new_tokens: 16
+  backward_responses: 2
+  grpo_update_epochs: 1

@@ -59,11 +59,12 @@ class TrainerTests(unittest.TestCase):
         self.group = make_group(self.model)
         self.optimizer = torch.optim.SGD(self.model.parameters(), lr=0.01)
 
-    def step(self, group=None):
+    def step(self, group=None, *, require_initial_ratio=True):
         return run_one_grpo_step(
             self.model, self.optimizer, self.group if group is None else group,
             pad_token_id=9, device="cpu", clip_epsilon=0.2,
             loss_reduction="response_then_group_then_batch", max_grad_norm=1.0,
+            require_initial_ratio=require_initial_ratio,
         )
 
     def test_one_step_changes_parameters_and_tracks_policy_drift(self) -> None:
@@ -86,6 +87,20 @@ class TrainerTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "pre-update ratio"):
             self.step(stale)
         self.assertTrue(all(torch.equal(before[key], self.model.state_dict()[key]) for key in before))
+
+    def test_second_epoch_reuses_old_log_probs_after_policy_changes(self) -> None:
+        first = self.step()
+        after_first = copy.deepcopy(self.model.state_dict())
+        self.assertGreater(first.post_max_ratio_deviation, 1e-3)
+        with self.assertRaisesRegex(RuntimeError, "pre-update ratio"):
+            self.step()
+        second = self.step(require_initial_ratio=False)
+        self.assertGreater(second.pre_max_ratio_deviation, 1e-3)
+        self.assertGreaterEqual(second.post_approx_kl_old, 0.0)
+        self.assertTrue(any(
+            not torch.equal(after_first[key], self.model.state_dict()[key])
+            for key in after_first
+        ))
 
     def test_all_equal_rewards_or_zero_advantages_abort(self) -> None:
         all_equal = [replace(item, reward=0.0, advantage=0.0) for item in self.group]

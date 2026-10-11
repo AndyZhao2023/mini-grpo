@@ -1,0 +1,110 @@
+{
+  "status": "completed",
+  "requested_steps": 2,
+  "completed_steps": 2,
+  "update_epochs": 2,
+  "config_sha256": "b6ac6d1d8656e4914cfb66f6774de0ad5a1a366e48cff9a601f7dc832bde94e6",
+  "dataset_revision": "740312add88f781978c0658806c59bc2815b9866",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "training_count": 7273,
+  "validation_count": 200,
+  "initial_model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "torch_version": "2.14.0",
+  "transformers_version": "4.57.6",
+  "generation_use_model_defaults": false,
+  "baseline": {
+    "question_count": 200,
+    "correct_count": 9,
+    "accuracy": 0.045,
+    "reason_counts": {
+      "missing_final_answer": 171,
+      "invalid_final_answer": 1,
+      "incorrect_answer": 19,
+      "correct_answer": 9
+    },
+    "truncation_count": 77,
+    "mean_response_tokens": 78.985
+  },
+  "final": {
+    "question_count": 200,
+    "correct_count": 8,
+    "accuracy": 0.04,
+    "reason_counts": {
+      "missing_final_answer": 169,
+      "incorrect_answer": 23,
+      "correct_answer": 8
+    },
+    "truncation_count": 76,
+    "mean_response_tokens": 77.285
+  },
+  "steps": [
+    {
+      "policy_before": "step-000000",
+      "policy_after": "step-000001",
+      "rollout_policy_version": "step-000000",
+      "rollout_artifact_dir": "results/m0/end-to-end-mu2-v1/steps/step-000001",
+      "update_epoch": 1,
+      "data_age_updates": 0,
+      "prompt_id": "gsm8k/main/train/01214",
+      "reward_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "advantage_vector": [
+        -0.5773502558562927,
+        -0.5773502558562927,
+        1.7320507675688783,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": 3.2782554626464844e-07,
+        "post_loss": -0.015604734420776367,
+        "pre_max_ratio_deviation": 3.325939178466797e-05,
+        "post_max_ratio_deviation": 0.5341370105743408,
+        "pre_clip_fraction": 0.0,
+        "post_clip_fraction": 0.03546099364757538,
+        "post_approx_kl_old": 0.0039328718557953835,
+        "gradient_norm_before_clip": 30.897811889648438,
+        "valid_token_count": 141
+      },
+      "checkpoint_dir": "results/m0/end-to-end-mu2-v1/checkpoints/step-000001",
+      "optimizer_state_saved": false
+    },
+    {
+      "policy_before": "step-000001",
+      "policy_after": "step-000002",
+      "rollout_policy_version": "step-000000",
+      "rollout_artifact_dir": "results/m0/end-to-end-mu2-v1/steps/step-000001",
+      "update_epoch": 2,
+      "data_age_updates": 1,
+      "prompt_id": "gsm8k/main/train/01214",
+      "reward_vector": [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "advantage_vector": [
+        -0.5773502558562927,
+        -0.5773502558562927,
+        1.7320507675688783,
+        -0.5773502558562927
+      ],
+      "metrics": {
+        "pre_loss": -0.015605032444000244,
+        "post_loss": -0.021709829568862915,
+        "pre_max_ratio_deviation": 0.5341243743896484,
+        "post_max_ratio_deviation": 0.6709084510803223,
+        "pre_clip_fraction": 0.03546099364757538,
+        "post_clip_fraction": 0.08510638028383255,
+        "post_approx_kl_old": 0.01062168087810278,
+        "gradient_norm_before_clip": 14.421198844909668,
+        "valid_token_count": 141
+      },
+      "checkpoint_dir": "results/m0/end-to-end-mu2-v1/checkpoints/step-000002",
+      "optimizer_state_saved": false
+    }
+  ]
+}

@@ -36,8 +36,13 @@ def run_one_grpo_step(
     loss_reduction: str,
     max_grad_norm: float,
     ratio_tolerance: float = 1e-3,
+    require_initial_ratio: bool = True,
 ) -> StepMetrics:
-    """Use saved old log-probs for one update, then measure policy drift."""
+    """Use saved rollout log-probs for one update, then measure policy drift.
+
+    Only the first epoch on a rollout requires ratio near one. A later epoch
+    compares the changed policy with the same frozen rollout probabilities.
+    """
     validate_group(group, require_complete=True)
     if len({item.reward for item in group}) < 2:
         raise ValueError("one-step training requires a mixed-reward group")
@@ -55,6 +60,8 @@ def run_one_grpo_step(
         or ratio_tolerance <= 0
     ):
         raise ValueError("ratio_tolerance must be finite and positive")
+    if type(require_initial_ratio) is not bool:
+        raise ValueError("require_initial_ratio must be a boolean")
     packed = pack_group(group, pad_token_id, device)
     model.eval()  # Disable dropout while retaining autograd.
     optimizer.zero_grad(set_to_none=True)
@@ -73,7 +80,7 @@ def run_one_grpo_step(
         packed.response_mask, clip_epsilon, loss_reduction,
     )
     pre_deviation = pre.max_ratio_deviation.item()
-    if pre_deviation > ratio_tolerance:
+    if require_initial_ratio and pre_deviation > ratio_tolerance:
         raise RuntimeError("pre-update ratio differs from 1 beyond tolerance")
     pre_loss = pre.loss.item()
     pre_clip_fraction = pre.clip_fraction.item()

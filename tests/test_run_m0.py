@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from dataclasses import replace
@@ -110,6 +111,80 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual((output / "dataset-split.json").exists(), True)
             self.assertEqual((output / "steps/step-000002/step.json").exists(), True)
             self.assertEqual((output / "checkpoints/step-000002/weights.txt").read_text(), "2")
+
+    def test_two_updates_reuse_one_rollout_and_old_probabilities(self):
+        config = {**CONFIG, "algorithm": {**CONFIG["algorithm"], "update_epochs": 2}}
+        sampled = []
+        updated = []
+
+        def sample(model, tokenizer, problem, config, version):
+            sampled.append((model.policy_step, version, problem.prompt_id))
+            return rollout(problem, version)
+
+        def update(model, optimizer, group, **kwargs):
+            updated.append((model.policy_step, group[0].policy_version,
+                            tuple(tuple(item.old_log_probs) for item in group),
+                            kwargs["require_initial_ratio"]))
+            model.policy_step += 1
+            return StepMetrics(0.0, -0.01, 0.0 if model.policy_step == 1 else 0.01,
+                               0.01, 0.0, 0.0, 0.001, 2.0, 4)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "run"
+            result = run_cycles(
+                self.model, self.tokenizer, object(), self.split, config, output,
+                config_sha256="config-hash", sample_fn=sample,
+                scan_fn=selected_scan, update_fn=update, evaluation_fn=self.evaluate,
+            )
+            self.assertEqual(result["status"], "completed")
+            self.assertEqual(result["completed_steps"], 2)
+            self.assertEqual(len(sampled), 1)
+            self.assertEqual(self.evaluated_steps, [0, 2])
+            self.assertEqual([row[0] for row in updated], [0, 1])
+            self.assertEqual([row[1] for row in updated], ["step-000000"] * 2)
+            self.assertEqual(updated[0][2], updated[1][2])
+            self.assertEqual([row[3] for row in updated], [True, False])
+            records = [json.loads((output / f"steps/step-{i:06d}/step.json").read_text())
+                       for i in (1, 2)]
+            self.assertEqual([row["data_age_updates"] for row in records], [0, 1])
+            self.assertEqual([row["rollout_policy_version"] for row in records],
+                             ["step-000000"] * 2)
+            self.assertEqual([row["update_epoch"] for row in records], [1, 2])
+            self.assertEqual((output / "checkpoints/step-000002/weights.txt").read_text(), "2")
+
+    def test_rejects_incomplete_update_epoch_group(self):
+        config = {**CONFIG, "algorithm": {**CONFIG["algorithm"], "update_epochs": 2},
+                  "run": {**CONFIG["run"], "update_steps": 1}}
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaisesRegex(ValueError, "divisible"):
+                run_cycles(self.model, self.tokenizer, object(), self.split, config,
+                           Path(tmp) / "run", config_sha256="config-hash",
+                           evaluation_fn=self.evaluate)
+
+    def test_drift_guard_stops_before_reusing_rollout(self):
+        config = {**CONFIG, "algorithm": {**CONFIG["algorithm"], "update_epochs": 2}}
+        sampled = []
+
+        def sample(model, tokenizer, problem, config, version):
+            sampled.append(version)
+            return rollout(problem, version)
+
+        def large_update(model, optimizer, group, **kwargs):
+            model.policy_step += 1
+            return StepMetrics(0.0, -0.01, 0.0, 0.5, 0.0, 0.25, 0.2, 2.0, 4)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "run"
+            result = run_cycles(
+                self.model, self.tokenizer, object(), self.split, config, output,
+                config_sha256="config-hash", sample_fn=sample,
+                scan_fn=selected_scan, update_fn=large_update,
+                evaluation_fn=self.evaluate,
+            )
+            self.assertEqual(result["status"], "incomplete_post_step_drift")
+            self.assertEqual(result["completed_steps"], 1)
+            self.assertEqual(len(sampled), 1)
+            self.assertFalse((output / "steps/step-000002").exists())
 
     def test_no_mixed_group_records_partial_run_without_update(self):
         def no_signal(problems, rollout_fn, algorithm_config, max_prompts):

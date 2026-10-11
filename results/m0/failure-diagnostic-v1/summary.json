@@ -1,0 +1,53 @@
+{
+  "status": "completed",
+  "model_updated": false,
+  "torch_version": "2.14.0",
+  "transformers_version": "4.57.6",
+  "short": {
+    "question_count": 100,
+    "correct_count": 6,
+    "accuracy": 0.06,
+    "reason_counts": {
+      "missing_final_answer": 83,
+      "correct_answer": 6,
+      "invalid_final_answer": 1,
+      "incorrect_answer": 10
+    },
+    "finish_reason_counts": {
+      "eos": 67,
+      "length": 33
+    },
+    "finish_by_reward_reason": {
+      "eos:missing_final_answer": 51,
+      "length:missing_final_answer": 32,
+      "eos:correct_answer": 6,
+      "eos:invalid_final_answer": 1,
+      "eos:incorrect_answer": 9,
+      "length:incorrect_answer": 1
+    }
+  },
+  "extended_on_short_truncations": {
+    "rerun_count": 33,
+    "new_correct_count": 0,
+    "still_truncated_count": 18,
+    "decoded_short_text_is_long_prefix_count": 33,
+    "extended": {
+      "question_count": 33,
+      "correct_count": 0,
+      "accuracy": 0.0,
+      "reason_counts": {
+        "missing_final_answer": 32,
+        "invalid_final_answer": 1
+      },
+      "finish_reason_counts": {
+        "length": 18,
+        "eos": 15
+      },
+      "finish_by_reward_reason": {
+        "length:missing_final_answer": 18,
+        "eos:missing_final_answer": 14,
+        "eos:invalid_final_answer": 1
+      }
+    }
+  }
+}

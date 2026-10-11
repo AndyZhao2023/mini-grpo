@@ -37,9 +37,14 @@ def _write_rows(path: Path, rows: list[dict]) -> None:
 
 def _validate_run(config: dict, split: TrainValidationSplit) -> None:
     run = config["run"]
+    update_epochs = config["algorithm"].get("update_epochs", 1)
+    if type(update_epochs) is not int or update_epochs not in (1, 2):
+        raise ValueError("algorithm.update_epochs must be 1 or 2")
     for name in ("update_steps", "max_prompts_per_step"):
         if type(run[name]) is not int or run[name] < 1:
             raise ValueError(f"run.{name} must be a positive integer")
+    if run["update_steps"] % update_epochs:
+        raise ValueError("run.update_steps must be divisible by algorithm.update_epochs")
     if run["order"] not in ("original", "shortest"):
         raise ValueError("run.order must be original or shortest")
     bound = run["max_post_approx_kl_old"]
@@ -72,60 +77,70 @@ def run_cycles(
     _write_json(output_dir / "validation-initial.json", baseline)
 
     ordered = order_training_problems(split.training, run["order"])
+    update_epochs = config["algorithm"].get("update_epochs", 1)
     selected_ids: set[str] = set()
     steps: list[dict] = []
     status = "completed"
+    selected = None
+    rollout_version = None
+    rollout_artifact_dir = None
     for index in range(run["update_steps"]):
         before_version = f"step-{index:06d}"
         after_version = f"step-{index + 1:06d}"
-        candidates = tuple(item for item in ordered if item.prompt_id not in selected_ids)
-        if not candidates:
-            status = "incomplete_no_mixed_group"
-            break
         step_dir = output_dir / "steps" / after_version
-        scan = scan_fn(
-            candidates,
-            lambda problem: sample_fn(model, tokenizer, problem, config, before_version),
-            config["algorithm"], min(run["max_prompts_per_step"], len(candidates)),
-        )
-        if not scan.attempts:
-            raise RuntimeError("scan returned no attempts")
-        reasons: Counter[str] = Counter()
-        for attempt in scan.attempts:
-            reasons.update(attempt["reason_counts"])
-        selected = scan.selected_advantaged
-        scan_record = {
-            "policy_version": before_version,
-            "source_sha256": split.source_sha256,
-            "config_sha256": config_sha256,
-            "order": run["order"],
-            "max_prompts": min(run["max_prompts_per_step"], len(candidates)),
-            "scanned_prompts": len(scan.attempts),
-            "zero_std_group_fraction": sum(item["zero_variance"] for item in scan.attempts) / len(scan.attempts),
-            "reason_counts": dict(reasons),
-            "selected_prompt_id": selected[0].prompt_id if selected else None,
-            "attempts": scan.attempts,
-        }
-        _write_json(step_dir / "scan.json", scan_record)
-        if selected is None:
-            status = "incomplete_no_mixed_group"
-            break
-        if scan.selected_rollout is None or scan.selected_scored is None:
-            raise RuntimeError("selected scan has incomplete trajectory stages")
+        update_epoch = index % update_epochs + 1
+        if update_epoch == 1:
+            candidates = tuple(item for item in ordered if item.prompt_id not in selected_ids)
+            if not candidates:
+                status = "incomplete_no_mixed_group"
+                break
+            rollout_version = before_version
+            rollout_artifact_dir = step_dir
+            scan = scan_fn(
+                candidates,
+                lambda problem: sample_fn(model, tokenizer, problem, config, rollout_version),
+                config["algorithm"], min(run["max_prompts_per_step"], len(candidates)),
+            )
+            if not scan.attempts:
+                raise RuntimeError("scan returned no attempts")
+            reasons: Counter[str] = Counter()
+            for attempt in scan.attempts:
+                reasons.update(attempt["reason_counts"])
+            selected = scan.selected_advantaged
+            scan_record = {
+                "policy_version": rollout_version,
+                "source_sha256": split.source_sha256,
+                "config_sha256": config_sha256,
+                "order": run["order"],
+                "max_prompts": min(run["max_prompts_per_step"], len(candidates)),
+                "scanned_prompts": len(scan.attempts),
+                "zero_std_group_fraction": sum(item["zero_variance"] for item in scan.attempts) / len(scan.attempts),
+                "reason_counts": dict(reasons),
+                "selected_prompt_id": selected[0].prompt_id if selected else None,
+                "attempts": scan.attempts,
+            }
+            _write_json(step_dir / "scan.json", scan_record)
+            if selected is None:
+                status = "incomplete_no_mixed_group"
+                break
+            if scan.selected_rollout is None or scan.selected_scored is None:
+                raise RuntimeError("selected scan has incomplete trajectory stages")
+            if selected[0].prompt_id in selected_ids:
+                raise ValueError("training prompt was selected twice")
+            for name, group in (
+                ("rollout", scan.selected_rollout),
+                ("scored", scan.selected_scored),
+                ("advantaged", selected),
+            ):
+                write_jsonl(step_dir / f"{name}.jsonl", group)
+            selected_ids.add(selected[0].prompt_id)
+        if selected is None or rollout_version is None or rollout_artifact_dir is None:
+            raise RuntimeError("update epoch has no selected rollout")
         validate_group(selected, require_complete=True)
-        if selected[0].policy_version != before_version:
-            raise ValueError("selected group was not sampled from the current policy")
+        if selected[0].policy_version != rollout_version:
+            raise ValueError("selected group was not sampled from the recorded rollout policy")
         if len({item.reward for item in selected}) < 2:
             raise ValueError("selected group must have mixed rewards")
-        if selected[0].prompt_id in selected_ids:
-            raise ValueError("training prompt was selected twice")
-        for name, group in (
-            ("rollout", scan.selected_rollout),
-            ("scored", scan.selected_scored),
-            ("advantaged", selected),
-        ):
-            write_jsonl(step_dir / f"{name}.jsonl", group)
-        selected_ids.add(selected[0].prompt_id)
 
         pad_token_id = tokenizer.pad_token_id
         if pad_token_id is None:
@@ -136,6 +151,7 @@ def run_cycles(
             clip_epsilon=config["algorithm"]["clip_epsilon"],
             loss_reduction=config["algorithm"]["loss_reduction"],
             max_grad_norm=config["optimizer"]["max_grad_norm"],
+            require_initial_ratio=update_epoch == 1,
         )
         if not math.isfinite(metrics.post_approx_kl_old):
             raise ValueError("post-update approx_kl_old must be finite")
@@ -146,6 +162,10 @@ def run_cycles(
         record = {
             "policy_before": before_version,
             "policy_after": after_version,
+            "rollout_policy_version": rollout_version,
+            "rollout_artifact_dir": str(rollout_artifact_dir),
+            "update_epoch": update_epoch,
+            "data_age_updates": update_epoch - 1,
             "prompt_id": selected[0].prompt_id,
             "reward_vector": [item.reward for item in selected],
             "advantage_vector": [item.advantage for item in selected],
@@ -167,6 +187,7 @@ def run_cycles(
         "status": status,
         "requested_steps": run["update_steps"],
         "completed_steps": len(steps),
+        "update_epochs": update_epochs,
         "config_sha256": config_sha256,
         "dataset_revision": config["data"]["revision"],
         "source_sha256": split.source_sha256,
@@ -194,8 +215,8 @@ def main(config_path: Path, output_dir: Path) -> dict:
         raise RuntimeError("configured MPS device is unavailable")
     if model_config["dtype"] != "float32" or model_config["training_method"] != "full_finetune":
         raise ValueError("M0 runner requires full-parameter float32 training")
-    if config["algorithm"]["beta"] != 0.0 or config["algorithm"]["update_epochs"] != 1:
-        raise ValueError("M0 runner requires beta=0 and one update per fresh rollout")
+    if config["algorithm"]["beta"] != 0.0:
+        raise ValueError("M0 runner requires beta=0")
     optimizer_config = config["optimizer"]
     if optimizer_config["name"] != "AdamW":
         raise ValueError("M0 runner requires AdamW")
