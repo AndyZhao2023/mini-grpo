@@ -1,0 +1,12 @@
+experiment: m2-sampling-order-v1
+run_config: configs/m0-run.yaml
+run_dir: results/m0/end-to-end-v2
+checkpoint_dir: results/m0/end-to-end-v2/checkpoints/step-000002
+checkpoint_sha256_file: results/m0/end-to-end-v2/checkpoint-sha256.txt
+prior_prompt_spec: configs/m1-prompt-two-step.yaml
+development_manifest: results/m1/prompt-two-step-v1/manifest.json
+confirmation_manifest: results/m1/prompt-two-step-confirm-v1/manifest.json
+selection:
+  salt: m2-sampling-order-v1
+  groups_per_arm: 64
+  arms: [shortest, hash_random]

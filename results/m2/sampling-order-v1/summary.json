@@ -1,0 +1,40 @@
+{
+  "status": "completed",
+  "model_updated": false,
+  "torch_version": "2.14.0",
+  "transformers_version": "4.57.6",
+  "shortest": {
+    "group_count": 64,
+    "sample_count": 256,
+    "mixed_group_count": 11,
+    "mixed_group_fraction": 0.171875,
+    "zero_variance_group_count": 53,
+    "correct_response_count": 14,
+    "reward_reason_counts": {
+      "correct_answer": 14,
+      "incorrect_answer": 14,
+      "invalid_final_answer": 5,
+      "missing_final_answer": 223
+    },
+    "generated_response_tokens": 19047,
+    "generation_and_scoring_wall_seconds": 155.60575004247949,
+    "mean_question_words": 19.4375
+  },
+  "hash_random": {
+    "group_count": 64,
+    "sample_count": 256,
+    "mixed_group_count": 2,
+    "mixed_group_fraction": 0.03125,
+    "zero_variance_group_count": 62,
+    "correct_response_count": 7,
+    "reward_reason_counts": {
+      "correct_answer": 7,
+      "incorrect_answer": 35,
+      "invalid_final_answer": 3,
+      "missing_final_answer": 211
+    },
+    "generated_response_tokens": 24728,
+    "generation_and_scoring_wall_seconds": 200.03213287738618,
+    "mean_question_words": 44.125
+  }
+}
