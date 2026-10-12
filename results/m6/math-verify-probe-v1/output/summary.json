@@ -1,0 +1,54 @@
+{
+  "experiment": "m6-math-verify-probe-v1",
+  "model_updated": false,
+  "package": {
+    "math-verify": "0.9.0",
+    "antlr4-python3-runtime": "4.13.2"
+  },
+  "input_sha256": {
+    "manifest": "217a333ff584a1e8d789f49636c311ae3c57586d76468219123f63a51b778871",
+    "results/m5/format-signal-audit-v1/manifest.json": "3af457c91fbe70329476f596e82c5051836185aba427d0d8bc4c32d172cf5fc6",
+    "results/m5/format-signal-audit-v1/output/rows.jsonl": "dd182990a6699847a581a222d6f37a5e83bd0da0eff0a39d329de0776205e697",
+    "results/m2/sampling-order-v1/shortest.jsonl": "d4899e16a5648caa1ab87e0a5e4db1d6c4fab78b0a898b95cd4602cd4fdc6952",
+    "results/m2/sampling-order-v1/hash_random.jsonl": "c3a4a58ddc1fd6abf80fb4d85f478fef795d52443e0a34e79652fe6697e49979"
+  },
+  "group_count": 38,
+  "response_count": 152,
+  "raw_default": {
+    "nonempty_parse": 152,
+    "numeric_candidate": 147,
+    "numeric_on_truncated": 11
+  },
+  "modes": {
+    "default_numeric_eos": {
+      "agreed": 126,
+      "complete_candidate_groups": 24,
+      "extracted_on_human_unresolved_eos": 10,
+      "fully_agreed_mixed_groups": 10,
+      "human_unresolved_eos": 10,
+      "length_rows": 15,
+      "math_verify_accepted": 88,
+      "missed": 1,
+      "strict_final_accepted": 48,
+      "unknown_abstained": 15,
+      "unknown_extracted": 10
+    },
+    "anchor_numeric_eos": {
+      "agreed": 55,
+      "complete_candidate_groups": 0,
+      "extracted_on_human_unresolved_eos": 2,
+      "fully_agreed_mixed_groups": 0,
+      "human_unresolved_eos": 10,
+      "length_rows": 15,
+      "math_verify_accepted": 9,
+      "missed": 72,
+      "strict_final_accepted": 48,
+      "unknown_abstained": 23,
+      "unknown_extracted": 2
+    }
+  },
+  "acceptance_gate_by_mode": {
+    "default_numeric_eos": false,
+    "anchor_numeric_eos": false
+  }
+}
