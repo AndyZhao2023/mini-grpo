@@ -1,0 +1,613 @@
+{
+  "experiment": "m5-format-signal-audit-v1",
+  "purpose": "blind candidate-answer annotation of all 38 groups activated only by additive format reward",
+  "selection_rule": "strict zero variance and strict_format_0.1 nonzero variance",
+  "source_file_sha256": {
+    "results/m5/offline-reward-simulation-v1/groups.jsonl": "47a187e05cd15ad5647bffc00a53f35c4d81769d7feec771127dc4e6f870ddf4",
+    "results/m2/sampling-order-v1/manifest.json": "3eaa25880f8e771e63c187519ef64a358377b1d5a78832f499b67aa08bc64836",
+    "results/m2/sampling-order-v1/shortest.jsonl": "d4899e16a5648caa1ab87e0a5e4db1d6c4fab78b0a898b95cd4602cd4fdc6952",
+    "results/m2/sampling-order-v1/hash_random.jsonl": "c3a4a58ddc1fd6abf80fb4d85f478fef795d52443e0a34e79652fe6697e49979"
+  },
+  "groups": [
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00407"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00698"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/01070"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02200"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02907"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03200"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03799"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/06848"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/07088"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/07390"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00661"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02832"
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03436"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01132"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06231"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/00723"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06810"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02829"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06265"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04699"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06008"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02702"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01437"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/05722"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01536"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04953"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06465"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/05635"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/07281"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06836"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04526"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02978"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01142"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04682"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/03001"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/00836"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02912"
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06991"
+    }
+  ],
+  "annotation_targets": [
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00407",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00407",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00407",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00698",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00698",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00698",
+      "sample_index": 3
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/01070",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/01070",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/01070",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02200",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02200",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02200",
+      "sample_index": 3
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02907",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03200",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03200",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03200",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03799",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03799",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03799",
+      "sample_index": 3
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/06848",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/06848",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/06848",
+      "sample_index": 3
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/07088",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/07088",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/07088",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/07390",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/07390",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00661",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/00661",
+      "sample_index": 3
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02832",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02832",
+      "sample_index": 1
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/02832",
+      "sample_index": 2
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03436",
+      "sample_index": 0
+    },
+    {
+      "arm": "shortest",
+      "prompt_id": "gsm8k/main/train/03436",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01132",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01132",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06231",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/00723",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/00723",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/00723",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06810",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06810",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06810",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02829",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06265",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04699",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06008",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06008",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06008",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02702",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02702",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01437",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01437",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/05722",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/05722",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/05722",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01536",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01536",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01536",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04953",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04953",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06465",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06465",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06465",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/05635",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/05635",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/05635",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/07281",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/07281",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/07281",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06836",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06836",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04526",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04526",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02978",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02978",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02978",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/01142",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04682",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/04682",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/03001",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/03001",
+      "sample_index": 2
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/00836",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/00836",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/00836",
+      "sample_index": 3
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/02912",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06991",
+      "sample_index": 0
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06991",
+      "sample_index": 1
+    },
+    {
+      "arm": "hash_random",
+      "prompt_id": "gsm8k/main/train/06991",
+      "sample_index": 2
+    }
+  ],
+  "annotation_rule": "reference-blind: choose a unique explicit final candidate with verbatim evidence; conflicting or unfinished responses abstain; truncated responses abstain automatically"
+}
