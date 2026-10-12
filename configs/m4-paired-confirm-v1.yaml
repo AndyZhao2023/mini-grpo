@@ -1,0 +1,11 @@
+experiment: m4-paired-confirm-v1
+m3_config: configs/m3-warm-start-v1.yaml
+m3_run_dir: results/m3/warm-start-v1
+m3_checkpoint_sha256_file: results/m3/warm-start-v1/checkpoint-sha256.txt
+selection:
+  salt: m4-paired-confirm-v1
+  question_count: 400
+evaluation:
+  primary_metric: strict_correct_count
+  secondary_metrics: [reward_reason_counts, truncation_count, paired_flips]
+  answer_value_analysis: manual_review_strict_flips_and_label_last_number_proxy
