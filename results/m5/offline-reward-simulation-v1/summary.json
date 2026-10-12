@@ -1,0 +1,66 @@
+{
+  "experiment": "m5-offline-reward-simulation-v1",
+  "source": "M2 saved sampled training rollouts; no generation or optimizer update",
+  "groups": 128,
+  "responses": 512,
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "source_file_sha256": {
+    "manifest.json": "3eaa25880f8e771e63c187519ef64a358377b1d5a78832f499b67aa08bc64836",
+    "shortest.jsonl": "d4899e16a5648caa1ab87e0a5e4db1d6c4fab78b0a898b95cd4602cd4fdc6952",
+    "hash_random.jsonl": "c3a4a58ddc1fd6abf80fb4d85f478fef795d52443e0a34e79652fe6697e49979"
+  },
+  "counts": {
+    "evidence_explicit_earlier_final": 17,
+    "evidence_unknown": 425,
+    "evidence_valid_final": 70,
+    "format_valid": 70,
+    "known_value_correct": 23,
+    "known_value_incorrect": 64,
+    "new_evidence_groups": 2,
+    "new_format_only_groups": 38,
+    "trainable_evidence_gated_format_0.1": 15,
+    "trainable_strict": 13,
+    "trainable_strict_format_0.01": 51,
+    "trainable_strict_format_0.1": 51
+  },
+  "by_arm": {
+    "shortest": {
+      "evidence_explicit_earlier_final": 11,
+      "evidence_unknown": 217,
+      "evidence_valid_final": 28,
+      "format_valid": 28,
+      "known_value_correct": 16,
+      "known_value_incorrect": 23,
+      "new_evidence_groups": 2,
+      "new_format_only_groups": 13,
+      "trainable_evidence_gated_format_0.1": 13,
+      "trainable_strict": 11,
+      "trainable_strict_format_0.01": 24,
+      "trainable_strict_format_0.1": 24
+    },
+    "hash_random": {
+      "evidence_explicit_earlier_final": 6,
+      "evidence_unknown": 208,
+      "evidence_valid_final": 42,
+      "format_valid": 42,
+      "known_value_correct": 7,
+      "known_value_incorrect": 41,
+      "new_format_only_groups": 25,
+      "trainable_evidence_gated_format_0.1": 2,
+      "trainable_strict": 2,
+      "trainable_strict_format_0.01": 27,
+      "trainable_strict_format_0.1": 27
+    }
+  },
+  "format_only_advantage_magnitude": {
+    "strict_format_0.1": {
+      "mean_absolute": 0.8871790873974671,
+      "max_absolute": 1.7320504075689698
+    },
+    "strict_format_0.01": {
+      "mean_absolute": 0.8871772874019431,
+      "max_absolute": 1.7320468075781148
+    }
+  },
+  "unknown_policy": "abstain on answer value; zero only for exploratory counterfactual"
+}
