@@ -1,0 +1,70 @@
+{
+  "status": "completed",
+  "model_updated": false,
+  "new_generation": false,
+  "source_split": "train",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "scope": "all 200 pairs rescored; 44 selected transitions annotated from saved text",
+  "input_sha256": {
+    "config": "ac53217a2def5a178620108ff1a740ef77df08d9557bf78d4df6b6e375e850c2",
+    "manifest": "19cf98fb776d55d067ec61f8fcc72f874deec8d8396bc433a20bf73aa91b1532",
+    "run_summary": "23b5b21e5d9adbde3160128fe76c6fa51312c65a53560c389e44de2b8be6aaca",
+    "initial": "57455d73be8b5adfcbcb2e443335e68861bfc26941566ca947b5393600d8bfd6",
+    "final": "957c19414a1b8179e26dce8fbdfa22dcbe2e1d79907869a1e697da32240627b7",
+    "annotations": "c09ac9adf7e4454e70397d7ea05ef679cc66e9b82560bd3a14de5c1ab8d59f86"
+  },
+  "baseline_metrics": {
+    "question_count": 200,
+    "correct_count": 2,
+    "accuracy": 0.01,
+    "reason_counts": {
+      "missing_final_answer": 182,
+      "incorrect_answer": 11,
+      "correct_answer": 2,
+      "invalid_final_answer": 5
+    },
+    "truncation_count": 63,
+    "mean_response_tokens": 73.52
+  },
+  "final_metrics": {
+    "question_count": 200,
+    "correct_count": 12,
+    "accuracy": 0.06,
+    "reason_counts": {
+      "missing_final_answer": 137,
+      "incorrect_answer": 43,
+      "invalid_final_answer": 8,
+      "correct_answer": 12
+    },
+    "truncation_count": 59,
+    "mean_response_tokens": 75.105
+  },
+  "question_count": 200,
+  "target_counts": {
+    "new_wrong_final": 34,
+    "newly_correct": 10
+  },
+  "gain_mechanism_counts": {
+    "changed_answer_value": 3,
+    "completed_answer": 1,
+    "same_value_and_derivation": 6
+  },
+  "new_wrong_final_initial_relation_counts": {
+    "different_wrong_value": 14,
+    "same_wrong_value": 14,
+    "unresolved_initial": 6
+  },
+  "reward_reason_transition_counts": {
+    "incorrect_answer -> missing_final_answer": 3,
+    "invalid_final_answer -> incorrect_answer": 1,
+    "missing_final_answer -> correct_answer": 10,
+    "missing_final_answer -> incorrect_answer": 34,
+    "missing_final_answer -> invalid_final_answer": 4
+  },
+  "paired": {
+    "newly_strict_correct": 10,
+    "lost_strict_correct": 0,
+    "correct_in_both": 2,
+    "identical_response_text": 74
+  }
+}
