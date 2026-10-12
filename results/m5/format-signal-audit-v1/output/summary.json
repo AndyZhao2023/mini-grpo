@@ -1,0 +1,45 @@
+{
+  "experiment": "m5-format-signal-audit-v1",
+  "model_updated": false,
+  "source_split": "train",
+  "source_sha256": "dca449882e67a1e7716b5da453650a7b16588a1f2d1a0d82394a43d75ea7e9ca",
+  "input_sha256": {
+    "manifest": "3af457c91fbe70329476f596e82c5051836185aba427d0d8bc4c32d172cf5fc6",
+    "annotations": "e2cfe4f2845d5053f2deec607fcfaeafd60fd8579a770ca27d2155428640173c"
+  },
+  "group_count": 38,
+  "response_count": 152,
+  "counts": {
+    "comparison_different_from_reference": 100,
+    "comparison_matches_reference": 27,
+    "comparison_unresolved": 25,
+    "groups_all_known_wrong": 8,
+    "groups_with_known_correct": 17,
+    "groups_with_rank_inversion": 17,
+    "groups_with_unknown": 20,
+    "kind_length_abstain": 15,
+    "kind_nonterminal": 3,
+    "kind_terminal": 76,
+    "kind_unresolved": 10,
+    "kind_valid_final": 48,
+    "negative_advantage_known_correct": 27,
+    "negative_advantage_unknown": 25,
+    "positive_advantage_known_wrong": 48
+  },
+  "by_arm": {
+    "shortest": {
+      "comparison_different_from_reference": 30,
+      "comparison_matches_reference": 13,
+      "comparison_unresolved": 9,
+      "negative_advantage_known_correct": 13,
+      "positive_advantage_known_wrong": 14
+    },
+    "hash_random": {
+      "comparison_different_from_reference": 70,
+      "comparison_matches_reference": 14,
+      "comparison_unresolved": 16,
+      "negative_advantage_known_correct": 14,
+      "positive_advantage_known_wrong": 34
+    }
+  }
+}
