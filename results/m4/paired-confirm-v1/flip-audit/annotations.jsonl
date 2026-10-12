@@ -1,0 +1,24 @@
+{"prompt_id":"gsm8k/main/train/04989","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"15","evidence":"#### 15\nUse the same final-line format"}
+{"prompt_id":"gsm8k/main/train/04780","failed_arm":"m3","failure_class":"wrong_value","candidate":"475","evidence":"#### 475"}
+{"prompt_id":"gsm8k/main/train/07118","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"109","evidence":"25 + 84 = 109 white roses."}
+{"prompt_id":"gsm8k/main/train/00171","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"24","evidence":"60% = 24 trees."}
+{"prompt_id":"gsm8k/main/train/06486","failed_arm":"m0","failure_class":"wrong_value","candidate":"5.5","evidence":"She uses 5.5 gallons of gas."}
+{"prompt_id":"gsm8k/main/train/06686","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"40","evidence":"= 40 bottles."}
+{"prompt_id":"gsm8k/main/train/01434","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"225","evidence":"75 * 3 = 225 tennis balls"}
+{"prompt_id":"gsm8k/main/train/00540","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"46","evidence":"18 + 16 + 12 = 46 sides."}
+{"prompt_id":"gsm8k/main/train/06000","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"4","evidence":"#### 4\nUse the same final-line format"}
+{"prompt_id":"gsm8k/main/train/06040","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"796","evidence":"1236 - 440 = 796"}
+{"prompt_id":"gsm8k/main/train/04661","failed_arm":"m0","failure_class":"wrong_value","candidate":"45","evidence":"= $45.00"}
+{"prompt_id":"gsm8k/main/train/02475","failed_arm":"m0","failure_class":"wrong_value","candidate":"300","evidence":"= 300 cents"}
+{"prompt_id":"gsm8k/main/train/01387","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"33","evidence":"99 / 3 = 33"}
+{"prompt_id":"gsm8k/main/train/05673","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"3","evidence":"12 - 9 = 3 slices were left."}
+{"prompt_id":"gsm8k/main/train/04049","failed_arm":"m0","failure_class":"wrong_value","candidate":"240","evidence":"360 - 120 = 240 pages"}
+{"prompt_id":"gsm8k/main/train/01922","failed_arm":"m0","failure_class":"unresolved","candidate":null,"evidence":"Amount needed = Total cost - Total earnings\nAmount"}
+{"prompt_id":"gsm8k/main/train/04278","failed_arm":"m0","failure_class":"wrong_value","candidate":"40","evidence":"60 - 20 = 40 packs."}
+{"prompt_id":"gsm8k/main/train/03073","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"5","evidence":"Each charge included 5 items."}
+{"prompt_id":"gsm8k/main/train/05752","failed_arm":"m0","failure_class":"wrong_value","candidate":"120","evidence":"= 120."}
+{"prompt_id":"gsm8k/main/train/05427","failed_arm":"m0","failure_class":"wrong_value","candidate":"100","evidence":"= $100."}
+{"prompt_id":"gsm8k/main/train/02307","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"12","evidence":"#### 12\nUse the same final-line format"}
+{"prompt_id":"gsm8k/main/train/01760","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"35","evidence":"= 35 pounds."}
+{"prompt_id":"gsm8k/main/train/03101","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"240","evidence":"#### 240\nUse the same final-line format"}
+{"prompt_id":"gsm8k/main/train/06443","failed_arm":"m0","failure_class":"correct_value_wrong_format","candidate":"10","evidence":"= 10 minutes to raise his kite"}

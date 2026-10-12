@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "model_updated": false,
+  "question_count": 400,
+  "strict_change_counts": {
+    "correct_in_both": 7,
+    "incorrect_in_both": 369,
+    "lost_correct": 1,
+    "newly_correct": 23
+  },
+  "flip_failure_class_counts": {
+    "newly_correct": {
+      "correct_value_wrong_format": 15,
+      "unresolved": 1,
+      "wrong_value": 7
+    },
+    "lost_correct": {
+      "wrong_value": 1
+    }
+  },
+  "scope": "all 800 saved answers rechecked; only 24 strict flips manually annotated",
+  "input_sha256": {
+    "manifest": "fbe856beac56fd888b8d80bdda83c2f0b3d1f9ea70a4d5c905862080542fc77e",
+    "run_summary": "c7f28d66e1866ef12bb40f71489c896bdbbc5deaf1a700a57468dc20770174cc",
+    "m0_rows": "c742c0ee20b0c2a4fc367da8cf8070917421285a38c08c981d7ee992be3ee1fa",
+    "m3_rows": "3cde5e68ff7138014f430afd1142af2a66301076ece9fa555c2b9944367993b3",
+    "annotations": "2abde97819df35ab97367d3a2327f272eb14e10f63d758188121969bb7d84b52"
+  }
+}

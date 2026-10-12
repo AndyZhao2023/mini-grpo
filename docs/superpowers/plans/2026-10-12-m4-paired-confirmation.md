@@ -31,25 +31,25 @@
 
 **Files:** Create `scripts/evaluate_m4_paired.py`, `tests/test_evaluate_m4_paired.py`, `results/m4/paired-confirm-v1/manifest.json`.
 
-- [ ] Test deterministic hash-ranked selection and all exclusions.
-- [ ] Test run/config/checkpoint lineage rejection.
-- [ ] Implement preparation; save a manifest with source and input hashes before any generation.
-- [ ] Run targeted tests and commit the frozen protocol and manifest.
+- [x] Test deterministic hash-ranked selection and all exclusions.
+- [x] Test run/config/checkpoint lineage rejection.
+- [x] Implement preparation; save a manifest with source and input hashes before any generation.
+- [x] Run targeted tests and commit the frozen protocol and manifest.
 
 ### Task 2: Evaluate and compare
 
 **Files:** Modify `scripts/evaluate_m4_paired.py`, `tests/test_evaluate_m4_paired.py`; create M0/M3 JSONL rows and `summary.json`.
 
-- [ ] Test verified-prefix resume, changed reward rejection, and four-way paired counts.
-- [ ] Evaluate each checkpoint with `evaluate_model`; write and flush rows incrementally.
-- [ ] Independently recheck all saved rewards and counts, then write summary only when both arms complete.
-- [ ] Run full unit tests and compile check.
+- [x] Test verified-prefix resume, changed reward rejection, and four-way paired counts.
+- [x] Evaluate each checkpoint with `evaluate_model`; write and flush rows incrementally.
+- [x] Independently recheck all saved rewards and counts, then write summary only when both arms complete.
+- [x] Run full unit tests and compile check.
 
 ### Task 3: Explain evidence
 
 **Files:** Modify `docs/m4-paired-confirm-v1.md`, `README.md`; create any flip annotations if needed.
 
-- [ ] Review all strict flips against raw response text and pinned references.
-- [ ] Separate strict score, last-number proxy, manual conclusions, and unknowns.
-- [ ] Add a 1–10 causal handoff packet and five comprehension questions.
-- [ ] Verify docs, commit, and sync the public repository.
+- [x] Review all strict flips against raw response text and pinned references.
+- [x] Separate strict score, last-number proxy, manual conclusions, and unknowns.
+- [x] Add a 1–10 causal handoff packet and five comprehension questions.
+- [x] Verify docs and stage results for the public repository.

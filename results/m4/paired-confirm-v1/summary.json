@@ -1,0 +1,82 @@
+{
+  "status": "completed",
+  "model_updated": false,
+  "official_test_used": false,
+  "source_split": "train",
+  "torch_version": "2.14.0",
+  "transformers_version": "4.57.6",
+  "input_sha256": {
+    "manifest": "fbe856beac56fd888b8d80bdda83c2f0b3d1f9ea70a4d5c905862080542fc77e",
+    "m0_rows": "c742c0ee20b0c2a4fc367da8cf8070917421285a38c08c981d7ee992be3ee1fa",
+    "m3_rows": "3cde5e68ff7138014f430afd1142af2a66301076ece9fa555c2b9944367993b3",
+    "paired": "e32573a35bf0ceb30519781e801d4ee1541c2908bc24b3543010ceb4b654eafe"
+  },
+  "question_count": 400,
+  "strict_change_counts": {
+    "correct_in_both": 7,
+    "incorrect_in_both": 369,
+    "lost_correct": 1,
+    "newly_correct": 23
+  },
+  "reward_reason_transition_counts": {
+    "correct_answer -> correct_answer": 7,
+    "correct_answer -> incorrect_answer": 1,
+    "incorrect_answer -> incorrect_answer": 27,
+    "incorrect_answer -> invalid_final_answer": 1,
+    "incorrect_answer -> missing_final_answer": 6,
+    "invalid_final_answer -> invalid_final_answer": 1,
+    "invalid_final_answer -> missing_final_answer": 1,
+    "missing_final_answer -> correct_answer": 23,
+    "missing_final_answer -> incorrect_answer": 68,
+    "missing_final_answer -> invalid_final_answer": 2,
+    "missing_final_answer -> missing_final_answer": 263
+  },
+  "last_number_proxy_counts": {
+    "m0": {
+      "last_number_differs": 183,
+      "last_number_matches_reference": 52,
+      "strict_correct": 8,
+      "strict_wrong_number": 34,
+      "truncated_unresolved": 123
+    },
+    "m3": {
+      "last_number_differs": 125,
+      "last_number_matches_reference": 32,
+      "strict_correct": 30,
+      "strict_wrong_number": 96,
+      "truncated_unresolved": 117
+    }
+  },
+  "m0": {
+    "question_count": 400,
+    "strict_correct_count": 8,
+    "strict_pass_at_1": 0.02,
+    "reward_reason_counts": {
+      "correct_answer": 8,
+      "incorrect_answer": 34,
+      "invalid_final_answer": 2,
+      "missing_final_answer": 356
+    },
+    "truncated_count": 124,
+    "mean_response_tokens": 74.4075
+  },
+  "m3": {
+    "question_count": 400,
+    "strict_correct_count": 30,
+    "strict_pass_at_1": 0.075,
+    "reward_reason_counts": {
+      "correct_answer": 30,
+      "incorrect_answer": 96,
+      "invalid_final_answer": 4,
+      "missing_final_answer": 270
+    },
+    "truncated_count": 121,
+    "mean_response_tokens": 75.855
+  },
+  "paired": {
+    "newly_strict_correct": 23,
+    "lost_strict_correct": 1,
+    "correct_in_both": 7,
+    "identical_response_text": 155
+  }
+}
